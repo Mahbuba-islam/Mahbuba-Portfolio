@@ -42,3 +42,8 @@ next-env.d.ts
 
 # local stats stub
 .data/
+
+# playwright
+/playwright-report/
+/test-results/
+/playwright/.cache/
