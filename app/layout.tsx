@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
+import { CommandPalette } from "./components/command-palette";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -111,6 +112,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
+          <CommandPalette />
         </ThemeProvider>
       </body>
     </html>

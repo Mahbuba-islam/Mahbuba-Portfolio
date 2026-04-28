@@ -6,6 +6,7 @@ import {
   Server,
   Database,
   Wrench,
+  Brain,
   type LucideIcon,
 } from "lucide-react";
 
@@ -21,27 +22,54 @@ const GROUPS: Group[] = [
     icon: Code2,
     label: "Frontend",
     accent: "from-sky-500/20 to-blue-500/20 text-sky-300 ring-sky-400/30",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "ShadCN UI"],
+    items: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "ShadCN UI",
+      "React Query",
+      "TanStack Query",
+      "Axios",
+    ],
   },
   {
     icon: Server,
     label: "Backend",
     accent:
       "from-emerald-500/20 to-teal-500/20 text-emerald-300 ring-emerald-400/30",
-    items: ["Node.js", "Express", "REST APIs", "Socket.io"],
+    items: [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "Zod",
+      "Better Auth",
+      "JWT",
+      "RAG",
+    ],
   },
   {
     icon: Database,
     label: "Database",
     accent:
       "from-purple-500/20 to-fuchsia-500/20 text-purple-300 ring-purple-400/30",
-    items: ["MongoDB", "PostgreSQL", "Prisma"],
+    items: ["MongoDB", "PostgreSQL", "Prisma ORM", "Firebase"],
   },
   {
     icon: Wrench,
     label: "Tools",
-    accent: "from-amber-500/20 to-orange-500/20 text-amber-300 ring-amber-400/30",
-    items: ["Git", "Docker", "Axios", "Zod", "TanStack Query"],
+    accent:
+      "from-amber-500/20 to-orange-500/20 text-amber-300 ring-amber-400/30",
+    items: ["Git", "Docker"],
+  },
+  {
+    icon: Brain,
+    label: "Engineering",
+    accent: "from-rose-500/20 to-pink-500/20 text-rose-300 ring-rose-400/30",
+    items: ["Problem Solving (JS)", "Critical Thinker"],
   },
 ];
 
@@ -62,7 +90,7 @@ export function Skills() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {GROUPS.map((g, i) => (
             <motion.div
               key={g.label}

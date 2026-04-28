@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./palette.css";
 
 @plugin "@tailwindcss/typography";
 
@@ -214,3 +215,49 @@ pre[class*="language-"] {
 .heading-anchor:hover {
   text-decoration: none;
 }
+/* Palette-driven utilities (auto from /public image) */
+.bg-palette-radial {
+  background:
+    radial-gradient(60% 50% at 30% 30%, color-mix(in oklab, var(--palette-vibrant) 35%, transparent), transparent 70%),
+    radial-gradient(50% 60% at 80% 70%, color-mix(in oklab, var(--palette-light-vibrant) 30%, transparent), transparent 70%),
+    radial-gradient(60% 60% at 50% 100%, color-mix(in oklab, var(--palette-dark-vibrant) 40%, transparent), transparent 70%);
+}
+.text-palette-vibrant { color: var(--palette-vibrant); }
+.ring-palette { --tw-ring-color: color-mix(in oklab, var(--palette-vibrant) 40%, transparent); }
+.border-palette { border-color: color-mix(in oklab, var(--palette-vibrant) 40%, transparent); }
+::selection { background: color-mix(in oklab, var(--palette-vibrant) 45%, transparent); }
+
+/* ── Print styles (resume) ──────────────────────────────────────────── */
+@media print {
+  @page {
+    size: Letter;
+    margin: 0.6in;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  /* Hide global chrome when printing */
+  header.sticky,
+  footer:not(.resume-footer),
+  [aria-label="Command palette"],
+  [aria-label="Open command palette"] {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+  .resume-paper {
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+  .resume-section {
+    page-break-inside: avoid;
+  }
+}
+

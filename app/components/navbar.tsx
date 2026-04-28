@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
+import { CommandPaletteTrigger } from "./command-palette";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -13,6 +14,7 @@ const NAV_LINKS = [
   { label: "Skills", href: "/#skills" },
   { label: "Projects", href: "/#projects" },
   { label: "Blog", href: "/blog" },
+  { label: "Resume", href: "/resume" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -64,6 +66,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <CommandPaletteTrigger />
           <ThemeToggle />
           <Button asChild size="sm" className="hidden sm:inline-flex">
             <Link href="/#contact">Hire me</Link>

@@ -1,0 +1,49 @@
+---
+title: "Polished Markdown with MDX Components"
+date: "2026-04-28"
+description: "Mixing prose with custom React components — callouts, figures, and keyboard hints — without leaving Markdown."
+tags: ["mdx", "guide", "nextjs"]
+---
+
+Plain Markdown is great for content, but every now and then you want a real
+React component inside the page — a styled callout, a captioned image, a
+keyboard hint. MDX gives you both, in the same file.
+
+## Callouts
+
+<Callout type="tip" title="Try this">
+  Use callouts sparingly. They lose impact if every paragraph is one.
+</Callout>
+
+<Callout type="warning">
+  This API is **experimental** and may change between minor versions.
+</Callout>
+
+<Callout type="success" title="It worked">
+  Your component now renders inside Markdown.
+</Callout>
+
+## Figures with captions
+
+<Figure
+  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=60"
+  alt="Code on a screen"
+  caption="A captioned figure rendered as a real React component."
+/>
+
+## Keyboard hints
+
+Press <Kbd>⌘</Kbd> + <Kbd>K</Kbd> on the blog index to focus the search box.
+
+## Plain Markdown still works
+
+Lists, **bold**, _italic_, [links](https://nextjs.org), and code blocks all
+behave exactly like in `.md`:
+
+```ts
+export function add(a: number, b: number) {
+  return a + b;
+}
+```
+
+That's the whole point — MDX is a superset, not a replacement.

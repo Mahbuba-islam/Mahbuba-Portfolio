@@ -13,6 +13,7 @@ export type PostFrontmatter = {
 export type PostMeta = PostFrontmatter & {
   slug: string;
   readingTime: string;
+  format: "md" | "mdx";
 };
 
 export type Post = PostMeta & {
@@ -50,6 +51,7 @@ export function getPostBySlug(slug: string): Post | null {
   const raw = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(raw);
   const fm = data as Partial<PostFrontmatter>;
+  const format: "md" | "mdx" = filePath.endsWith(".mdx") ? "mdx" : "md";
 
   return {
     slug: realSlug,
@@ -58,6 +60,7 @@ export function getPostBySlug(slug: string): Post | null {
     description: fm.description ?? "",
     tags: Array.isArray(fm.tags) ? fm.tags : [],
     readingTime: readingTime(content).text,
+    format,
     content,
   };
 }

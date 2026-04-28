@@ -12,6 +12,8 @@ import {
 import { extractToc, markdownToHtml } from "@/lib/markdown";
 import { TableOfContents } from "@/app/components/toc";
 import { PostNav, RelatedPosts } from "@/app/components/post-nav";
+import { MdxRenderer } from "@/app/components/mdx-renderer";
+import { PostStats } from "@/app/components/post-stats";
 
 type RouteParams = { slug: string };
 
@@ -57,7 +59,8 @@ export default async function BlogPostPage({
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const html = await markdownToHtml(post.content);
+  const html =
+    post.format === "mdx" ? null : await markdownToHtml(post.content);
   const toc = extractToc(post.content);
   const { previous, next } = getAdjacentPosts(post.slug);
   const related = getRelatedPosts(post.slug);
@@ -116,12 +119,19 @@ export default async function BlogPostPage({
               ))}
             </ul>
           )}
+          <PostStats slug={post.slug} />
         </header>
 
-        <div
-          className="prose prose-zinc dark:prose-invert mt-10 max-w-none prose-headings:scroll-mt-24 prose-pre:rounded-xl prose-pre:border prose-pre:border-border/60 prose-pre:bg-zinc-950/80 prose-code:before:hidden prose-code:after:hidden"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        {post.format === "mdx" ? (
+          <div className="prose prose-zinc dark:prose-invert mt-10 max-w-none prose-headings:scroll-mt-24 prose-pre:rounded-xl prose-pre:border prose-pre:border-border/60 prose-pre:bg-zinc-950/80 prose-code:before:hidden prose-code:after:hidden">
+            <MdxRenderer source={post.content} />
+          </div>
+        ) : (
+          <div
+            className="prose prose-zinc dark:prose-invert mt-10 max-w-none prose-headings:scroll-mt-24 prose-pre:rounded-xl prose-pre:border prose-pre:border-border/60 prose-pre:bg-zinc-950/80 prose-code:before:hidden prose-code:after:hidden"
+            dangerouslySetInnerHTML={{ __html: html ?? "" }}
+          />
+        )}
 
         <PostNav previous={previous} next={next} />
         <RelatedPosts posts={related} />

@@ -6,6 +6,7 @@ import { ArrowUpRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { GithubIcon } from "./brand-icons";
+import { TiltCard } from "./tilt-card";
 
 type Project = {
   title: string;
@@ -70,6 +71,22 @@ const PROJECTS: Project[] = [
     demo: "/blog",
     gradient: "from-amber-500/30 via-orange-500/20 to-rose-500/30",
   },
+  {
+    title: "RAG Knowledge Assistant",
+    tagline: "Retrieval-augmented chatbot over your docs",
+    description:
+      "A RAG-powered assistant that answers questions from a private knowledge base — chunked, embedded, and retrieved with citations.",
+    features: [
+      "Document ingestion + chunking",
+      "Vector embeddings + similarity search",
+      "Streamed answers with citations",
+      "JWT-protected admin upload",
+    ],
+    stack: ["Next.js", "Node.js", "Postgres", "Better Auth", "Zod"],
+    github: "https://github.com/",
+    demo: "#",
+    gradient: "from-fuchsia-500/30 via-violet-500/20 to-indigo-500/30",
+  },
 ];
 
 export function Projects() {
@@ -94,16 +111,18 @@ export function Projects() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {PROJECTS.map((p, i) => (
-            <motion.article
+            <motion.div
               key={p.title}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
-              className={`group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-indigo-400/40 hover:shadow-2xl hover:shadow-indigo-500/10 ${
-                p.featured ? "lg:col-span-2" : ""
-              }`}
+              className={p.featured ? "lg:col-span-2" : ""}
             >
+              <TiltCard
+                as="article"
+                className={`group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur transition-all hover:border-indigo-400/40 hover:shadow-2xl hover:shadow-indigo-500/10`}
+              >
               <div
                 aria-hidden
                 className={`pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-linear-to-br ${p.gradient} blur-3xl opacity-60 transition-opacity group-hover:opacity-90`}
@@ -170,7 +189,8 @@ export function Projects() {
                   </Link>
                 </Button>
               </div>
-            </motion.article>
+              </TiltCard>
+            </motion.div>
           ))}
         </div>
       </div>
