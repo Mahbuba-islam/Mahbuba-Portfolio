@@ -53,9 +53,29 @@ export default async function BlogPostPage({
   const html = await markdownToHtml(post.content);
   const toc = extractToc(post.content);
 
+  const SITE_URL =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mahbuba.dev";
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Person", name: "Mahbuba Akter", url: SITE_URL },
+    keywords: post.tags.join(", "),
+    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+    image: `${SITE_URL}/blog/${post.slug}/opengraph-image`,
+  };
+
   return (
     <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-24 xl:grid-cols-[minmax(0,1fr)_220px]">
       <article className="mx-auto w-full max-w-3xl xl:mx-0">
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
         <Link
           href="/blog"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"

@@ -51,6 +51,36 @@ export const metadata: Metadata = {
       "Building modern, scalable, real-time web applications with Next.js, Node.js, and Prisma.",
   },
   icons: { icon: "/favicon.ico" },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [{ url: "/rss.xml", title: "Mahbuba Akter — Blog" }],
+    },
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Mahbuba Akter",
+  url: SITE_URL,
+  jobTitle: "Junior Full Stack Web Developer",
+  email: "mailto:mahbubaislam7010@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "New York",
+    addressRegion: "NY",
+    addressCountry: "US",
+  },
+  knowsAbout: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Prisma",
+    "PostgreSQL",
+    "Socket.io",
+  ],
 };
 
 export default function RootLayout({
@@ -65,6 +95,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="relative min-h-full bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

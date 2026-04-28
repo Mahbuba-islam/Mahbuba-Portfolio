@@ -1,5 +1,11 @@
 <!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# Important: This Next.js version differs from older releases
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+This project uses a Next.js build with breaking changes. APIs, conventions, and
+file structure may not match older documentation or model training data.
+
+Before generating or modifying code, always consult the official guides located at:
+`node_modules/next/dist/docs/`
+
+Follow all deprecation warnings and updated patterns to ensure compatibility.
 <!-- END:nextjs-agent-rules -->
