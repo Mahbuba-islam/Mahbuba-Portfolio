@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import {
+  getAdjacentPosts,
+  getAllPosts,
+  getPostBySlug,
+  getRelatedPosts,
+  tagToSlug,
+} from "@/lib/posts";
 import { extractToc, markdownToHtml } from "@/lib/markdown";
 import { TableOfContents } from "@/app/components/toc";
+import { PostNav, RelatedPosts } from "@/app/components/post-nav";
 
 type RouteParams = { slug: string };
 
@@ -52,6 +59,8 @@ export default async function BlogPostPage({
 
   const html = await markdownToHtml(post.content);
   const toc = extractToc(post.content);
+  const { previous, next } = getAdjacentPosts(post.slug);
+  const related = getRelatedPosts(post.slug);
 
   const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://mahbuba.dev";
@@ -96,11 +105,13 @@ export default async function BlogPostPage({
           {post.tags.length > 0 && (
             <ul className="mt-5 flex flex-wrap gap-1.5">
               {post.tags.map((t) => (
-                <li
-                  key={t}
-                  className="rounded-md border border-border/60 bg-background/60 px-2 py-0.5 text-[11px] text-muted-foreground"
-                >
-                  #{t}
+                <li key={t}>
+                  <Link
+                    href={`/blog/tag/${tagToSlug(t)}`}
+                    className="inline-block rounded-md border border-border/60 bg-background/60 px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-indigo-400/40 hover:text-indigo-300"
+                  >
+                    #{t}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -111,6 +122,9 @@ export default async function BlogPostPage({
           className="prose prose-zinc dark:prose-invert mt-10 max-w-none prose-headings:scroll-mt-24 prose-pre:rounded-xl prose-pre:border prose-pre:border-border/60 prose-pre:bg-zinc-950/80 prose-code:before:hidden prose-code:after:hidden"
           dangerouslySetInnerHTML={{ __html: html }}
         />
+
+        <PostNav previous={previous} next={next} />
+        <RelatedPosts posts={related} />
       </article>
 
       <aside>

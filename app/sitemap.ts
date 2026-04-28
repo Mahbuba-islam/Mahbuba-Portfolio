@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getAllTags, tagToSlug } from "@/lib/posts";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mahbuba.dev";
 
@@ -17,5 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...postRoutes];
+  const tagRoutes: MetadataRoute.Sitemap = getAllTags().map(({ tag }) => ({
+    url: `${SITE_URL}/blog/tag/${tagToSlug(tag)}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.4,
+  }));
+
+  return [...staticRoutes, ...postRoutes, ...tagRoutes];
 }

@@ -69,3 +69,59 @@ export function getAllPosts(): PostMeta[] {
     .map(({ content: _content, ...meta }) => meta)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
+
+export type AdjacentPosts = {
+  previous: PostMeta | null;
+  next: PostMeta | null;
+};
+
+export function getAdjacentPosts(slug: string): AdjacentPosts {
+  const posts = getAllPosts();
+  const idx = posts.findIndex((p) => p.slug === slug);
+  if (idx === -1) return { previous: null, next: null };
+  // posts are sorted newest -> oldest, so "next" (newer) is at idx-1
+  return {
+    previous: posts[idx + 1] ?? null,
+    next: posts[idx - 1] ?? null,
+  };
+}
+
+export function getRelatedPosts(slug: string, limit = 3): PostMeta[] {
+  const posts = getAllPosts();
+  const current = posts.find((p) => p.slug === slug);
+  if (!current) return [];
+  const tagSet = new Set(current.tags);
+  return posts
+    .filter((p) => p.slug !== slug)
+    .map((p) => ({
+      post: p,
+      score: p.tags.filter((t) => tagSet.has(t)).length,
+    }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score || (a.post.date < b.post.date ? 1 : -1))
+    .slice(0, limit)
+    .map((x) => x.post);
+}
+
+export function getAllTags(): { tag: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const post of getAllPosts()) {
+    for (const tag of post.tags) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    }
+  }
+  return Array.from(counts, ([tag, count]) => ({ tag, count })).sort(
+    (a, b) => b.count - a.count || a.tag.localeCompare(b.tag),
+  );
+}
+
+export function getPostsByTag(tag: string): PostMeta[] {
+  const lower = tag.toLowerCase();
+  return getAllPosts().filter((p) =>
+    p.tags.some((t) => t.toLowerCase() === lower),
+  );
+}
+
+export function tagToSlug(tag: string): string {
+  return tag.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
