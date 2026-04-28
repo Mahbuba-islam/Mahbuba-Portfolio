@@ -167,14 +167,50 @@ CI runs all of these on every PR via [`.github/workflows/ci.yml`](.github/workfl
 
 ---
 
-## 🚢 Deploying
+## 🚢 Deploying to Vercel
 
-Optimized for **Vercel**:
+This project is fully configured for Vercel — there is a [`vercel.json`](vercel.json) with security headers and the right framework preset.
 
-1. Push to GitHub.
-2. Import the repo into Vercel.
-3. Set `NEXT_PUBLIC_SITE_URL` (and Resend keys, if using the contact form).
-4. Deploy.
+### 1. Push to GitHub
+
+```bash
+git add -A
+git commit -m "ready for deploy"
+git push
+```
+
+### 2. Import into Vercel
+
+1. Go to https://vercel.com/new
+2. **Import Git Repository** → pick this repo.
+3. Framework preset is auto-detected as **Next.js**. Leave the defaults.
+4. **Do not deploy yet** — first add the environment variables (next step).
+
+### 3. Environment variables
+
+In the Vercel **Configure Project** screen (or later in **Settings → Environment Variables**), add:
+
+| Key                    | Value                                              | Environments         |
+| ---------------------- | -------------------------------------------------- | -------------------- |
+| `RESEND_API_KEY`       | `re_...` from https://resend.com/api-keys           | Production, Preview  |
+| `CONTACT_TO_EMAIL`     | `mahbubaislam7010@gmail.com`                       | Production, Preview  |
+| `CONTACT_FROM_EMAIL`   | `Portfolio <onboarding@resend.dev>` (or your verified domain) | Production, Preview  |
+| `NEXT_PUBLIC_SITE_URL` | `https://your-domain.vercel.app` (set after deploy) | Production           |
+
+> **Note:** the default `onboarding@resend.dev` from-address only delivers to the email you signed up to Resend with. To send to *any* address, verify your domain at Resend → Domains and update `CONTACT_FROM_EMAIL`.
+
+### 4. Deploy
+
+Click **Deploy**. The build runs `prebuild` (palette extraction) then `next build`.
+
+### 5. After first deploy
+
+1. Update `NEXT_PUBLIC_SITE_URL` to the actual deployed URL (or your custom domain).
+2. Click **Redeploy** so the sitemap, RSS, and OG tags pick up the new origin.
+
+### Optional: Custom domain
+
+Vercel → Project → **Settings → Domains** → add your domain and follow the DNS instructions. Then update `NEXT_PUBLIC_SITE_URL` to match.
 
 The build step automatically extracts the palette, so the deployed site is themed from your committed photo.
 

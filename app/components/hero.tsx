@@ -100,14 +100,15 @@ export function Hero() {
             className="mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
             Hi, I&apos;m{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${palette.LightVibrant}, ${palette.Vibrant}, ${palette.DarkVibrant})`,
-              }}
-            >
-              Mahbuba Akter
-            </span>
+           <span
+  className="bg-clip-text text-transparent animate-gradient-x"
+  style={{
+    backgroundImage: `linear-gradient(320deg, ${palette.LightVibrant}, ${palette.Vibrant}, ${palette.DarkVibrant})`,
+  }}
+>
+  Mahbuba Akter
+</span>
+
           </motion.h1>
 
           <motion.p

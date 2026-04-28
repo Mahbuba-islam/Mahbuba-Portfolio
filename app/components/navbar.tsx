@@ -86,32 +86,21 @@ export function Navbar() {
           href="/"
           className="group flex items-center gap-2.5 text-sm font-semibold tracking-tight"
         >
-          <span
-            className="relative grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-full ring-2 ring-offset-2 ring-offset-background transition-transform group-hover:scale-105"
-            style={{
-              boxShadow: `0 0 0 1px color-mix(in oklab, ${palette.Vibrant} 50%, transparent), 0 4px 18px -4px ${palette.Vibrant}66`,
-              background: `linear-gradient(135deg, ${palette.LightVibrant}, ${palette.Vibrant}, ${palette.DarkVibrant})`,
-            }}
-          >
-            {palette.image ? (
-              <Image
-                src={palette.image}
-                alt="Mahbuba Akter"
-                width={72}
-                height={72}
-                priority
-                className="h-full w-full rounded-full object-cover"
-              />
-            ) : (
-              <span className="text-[11px] font-bold text-white">MA</span>
-            )}
-          </span>
-          <span className="hidden flex-col leading-tight sm:flex">
-            <span className="text-sm">Mahbuba Akter</span>
-            <span className="text-[10px] font-normal text-muted-foreground">
-              Junior Full Stack Dev
-            </span>
-          </span>
+         
+
+<span className="hidden sm:flex flex-col leading-tight px-2 py-1 rounded-lg 
+  backdrop-blur-md bg-white/10 border border-white/20 shadow-sm">
+  <span className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent">
+    Mahbuba Akter
+  </span>
+  <span className="text-[10px] text-muted-foreground">
+    Junior Full Stack Dev
+  </span>
+</span>
+
+
+
+
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

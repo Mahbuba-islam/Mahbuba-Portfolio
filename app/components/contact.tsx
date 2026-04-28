@@ -9,18 +9,24 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { GithubIcon, LinkedinIcon } from "./brand-icons";
 
-type Status = "idle" | "loading" | "success" | "error";
+type Status = "idle" | "loading" | "success" | "warning" | "error";
 
 export function Contact() {
   const [status, setStatus] = React.useState<Status>("idle");
   const [error, setError] = React.useState<string | null>(null);
+  const [warning, setWarning] = React.useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    const form = e.currentTarget; // ✅ cache before async boundary
+
     setStatus("loading");
     setError(null);
+    setWarning(null);
 
-    const fd = new FormData(e.currentTarget);
+    const fd = new FormData(form);
+
     const payload = {
       name: String(fd.get("name") ?? ""),
       email: String(fd.get("email") ?? ""),
@@ -33,10 +39,30 @@ export function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
-      if (!res.ok || !data.ok) throw new Error(data.error ?? "Failed to send");
+
+      const data = (await res.json()) as {
+        ok?: boolean;
+        delivered?: boolean;
+        error?: string;
+      };
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error ?? "Failed to send");
+      }
+
+      // Logged but not actually emailed (dev mode, no API key).
+      if (data.delivered === false) {
+        setStatus("warning");
+        setWarning(
+          data.error ??
+            "Message received but email is not configured on the server.",
+        );
+        form.reset();
+        return;
+      }
+
       setStatus("success");
-      e.currentTarget.reset();
+      form.reset();
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Something went wrong");
@@ -56,15 +82,17 @@ export function Contact() {
             <p className="bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 bg-clip-text text-xs font-semibold uppercase tracking-widest text-transparent dark:from-indigo-300 dark:via-sky-300 dark:to-cyan-300">
               Contact
             </p>
+
             <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
               Let&apos;s build{" "}
               <span className="bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 bg-clip-text text-transparent dark:from-indigo-300 dark:via-sky-300 dark:to-cyan-300">
                 something together.
               </span>
             </h2>
+
             <p className="mt-4 text-muted-foreground">
-              I&apos;m looking for a junior full-stack internship in New York or
-              remote. Drop me a message — I read everything.
+              I&apos;m looking for a junior full-stack internship in New York or remote.
+              Drop me a message — I read everything.
             </p>
 
             <ul className="mt-8 space-y-3 text-sm">
@@ -81,6 +109,7 @@ export function Contact() {
                   </span>
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="https://github.com/"
@@ -96,6 +125,7 @@ export function Contact() {
                   </span>
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="https://linkedin.com/"
@@ -122,40 +152,28 @@ export function Contact() {
             onSubmit={onSubmit}
             className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-6 shadow-lg shadow-black/10 backdrop-blur-xl backdrop-saturate-150 sm:p-8 dark:bg-white/5 dark:shadow-black/40"
           >
-            {/* soft gradient sheen behind the glass */}
             <div
               aria-hidden
               className="pointer-events-none absolute -inset-px -z-10 rounded-2xl bg-linear-to-br from-indigo-400/20 via-sky-400/10 to-cyan-400/20 opacity-60"
             />
+
             <div className="grid gap-4">
               <div className="grid gap-1.5">
-                <label htmlFor="name" className="text-sm font-medium text-foreground">
+                <label htmlFor="name" className="text-sm font-medium">
                   Name
                 </label>
-                <Input
-                  id="name"
-                  name="name"
-                  required
-                  minLength={2}
-                  placeholder="Jane Doe"
-                  className="border-white/20 bg-white/30 text-foreground placeholder:text-muted-foreground/80 focus-visible:border-indigo-300/60 focus-visible:ring-indigo-300/40 dark:bg-white/10"
-                />
+                <Input id="name" name="name" required minLength={2} placeholder="Jane Doe" />
               </div>
+
               <div className="grid gap-1.5">
-                <label htmlFor="email" className="text-sm font-medium text-foreground">
+                <label htmlFor="email" className="text-sm font-medium">
                   Email
                 </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="you@company.com"
-                  className="border-white/20 bg-white/30 text-foreground placeholder:text-muted-foreground/80 focus-visible:border-indigo-300/60 focus-visible:ring-indigo-300/40 dark:bg-white/10"
-                />
+                <Input id="email" name="email" type="email" required placeholder="you@company.com" />
               </div>
+
               <div className="grid gap-1.5">
-                <label htmlFor="message" className="text-sm font-medium text-foreground">
+                <label htmlFor="message" className="text-sm font-medium">
                   Message
                 </label>
                 <Textarea
@@ -165,14 +183,13 @@ export function Contact() {
                   minLength={10}
                   rows={5}
                   placeholder="Tell me a little about your team or role..."
-                  className="border-white/20 bg-white/30 text-foreground placeholder:text-muted-foreground/80 focus-visible:border-indigo-300/60 focus-visible:ring-indigo-300/40 dark:bg-white/10"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-2 bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/30 ring-1 ring-white/20 hover:from-indigo-400 hover:via-sky-400 hover:to-cyan-400"
+                className="mt-2 bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/30 ring-1 ring-white/20"
               >
                 {status === "loading" ? (
                   <>
@@ -190,7 +207,12 @@ export function Contact() {
               </Button>
 
               {status === "error" && (
-                <p className="text-sm text-destructive">{error}</p>
+                <p className="text-sm text-red-500">{error}</p>
+              )}
+              {status === "warning" && warning && (
+                <p className="text-sm text-amber-600 dark:text-amber-300">
+                  {warning}
+                </p>
               )}
             </div>
           </motion.form>
