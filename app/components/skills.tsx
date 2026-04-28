@@ -73,7 +73,7 @@ export function Skills() {
               className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/5"
             >
               <div
-                className={`grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br ring-1 ${g.accent}`}
+                className={`grid h-10 w-10 place-items-center rounded-xl bg-linear-to-br ring-1 ${g.accent}`}
               >
                 <g.icon className="h-5 w-5" />
               </div>

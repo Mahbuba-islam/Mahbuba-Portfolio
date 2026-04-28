@@ -62,7 +62,7 @@ export function About() {
                 className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-indigo-400/40 hover:shadow-lg hover:shadow-indigo-500/5"
               >
                 <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.10),transparent_60%)] opacity-0 transition-opacity group-hover:opacity-100" />
-                <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-indigo-500/20 to-purple-500/20 text-indigo-300 ring-1 ring-indigo-400/30">
+                <div className="grid h-9 w-9 place-items-center rounded-lg bg-linear-to-br from-indigo-500/20 to-purple-500/20 text-indigo-300 ring-1 ring-indigo-400/30">
                   <h.icon className="h-4 w-4" />
                 </div>
                 <h3 className="mt-4 text-base font-semibold">{h.title}</h3>

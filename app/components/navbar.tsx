@@ -44,7 +44,7 @@ export function Navbar() {
           href="/"
           className="group flex items-center gap-2 text-sm font-semibold tracking-tight"
         >
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 text-white shadow-lg shadow-indigo-500/20 ring-1 ring-white/20">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-linear-to-br from-blue-500 via-indigo-500 to-purple-500 text-white shadow-lg shadow-indigo-500/20 ring-1 ring-white/20">
             <Sparkles className="h-4 w-4" />
           </span>
           <span className="hidden sm:inline">Mahbuba Akter</span>

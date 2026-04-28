@@ -13,15 +13,15 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-24 -z-10 flex justify-center"
       >
-        <div className="h-[420px] w-[820px] rounded-full bg-[radial-gradient(closest-side,rgba(99,102,241,0.35),transparent_70%)] blur-2xl" />
+        <div className="h-105 w-205 rounded-full bg-[radial-gradient(closest-side,rgba(99,102,241,0.35),transparent_70%)] blur-2xl" />
       </div>
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-32 right-0 -z-10 h-[380px] w-[380px] rounded-full bg-[radial-gradient(closest-side,rgba(168,85,247,0.30),transparent_70%)] blur-3xl"
+        className="pointer-events-none absolute -bottom-32 right-0 -z-10 h-95 w-95 rounded-full bg-[radial-gradient(closest-side,rgba(168,85,247,0.30),transparent_70%)] blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-10 left-0 -z-10 h-[300px] w-[300px] rounded-full bg-[radial-gradient(closest-side,rgba(56,189,248,0.25),transparent_70%)] blur-3xl"
+        className="pointer-events-none absolute -top-10 left-0 -z-10 h-75 w-75 rounded-full bg-[radial-gradient(closest-side,rgba(56,189,248,0.25),transparent_70%)] blur-3xl"
       />
 
       <div className="mx-auto flex max-w-4xl flex-col items-center px-4 text-center sm:px-6">
@@ -45,7 +45,7 @@ export function Hero() {
           className="mt-6 text-balance text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
         >
           Hi, I&apos;m{" "}
-          <span className="bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-sky-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
             Mahbuba Akter
           </span>
         </motion.h1>

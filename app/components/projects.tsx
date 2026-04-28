@@ -105,7 +105,7 @@ export function Projects() {
             >
               <div
                 aria-hidden
-                className={`pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-br ${p.gradient} blur-3xl opacity-60 transition-opacity group-hover:opacity-90`}
+                className={`pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-linear-to-br ${p.gradient} blur-3xl opacity-60 transition-opacity group-hover:opacity-90`}
               />
 
               <div className="flex flex-wrap items-center gap-2">

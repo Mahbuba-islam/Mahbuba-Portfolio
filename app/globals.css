@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@plugin "@tailwindcss/typography";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -126,5 +128,80 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
   }
+  ::selection {
+    background: rgba(99, 102, 241, 0.35);
+  }
+}
+
+/* Subtle grid background accent */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(120, 119, 198, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(120, 119, 198, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Prism / rehype-prism-plus minimal dark theme */
+pre[class*="language-"],
+code[class*="language-"] {
+  color: #e4e4e7;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.875em;
+  line-height: 1.65;
+}
+
+pre[class*="language-"] {
+  padding: 1rem 1.1rem;
+  overflow: auto;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata { color: #71717a; font-style: italic; }
+.token.punctuation { color: #a1a1aa; }
+.token.namespace { opacity: 0.7; }
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted { color: #f472b6; }
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted { color: #86efac; }
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string { color: #93c5fd; }
+.token.atrule,
+.token.attr-value,
+.token.keyword { color: #c4b5fd; }
+.token.function,
+.token.class-name { color: #fde68a; }
+.token.regex,
+.token.important,
+.token.variable { color: #fca5a5; }
+.token.important,
+.token.bold { font-weight: 700; }
+.token.italic { font-style: italic; }
+
+.code-line.line-highlight {
+  background: rgba(99, 102, 241, 0.08);
+  display: block;
+}
+
+/* Inline code */
+:not(pre) > code {
+  background: color-mix(in oklab, var(--muted) 70%, transparent);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
 }
