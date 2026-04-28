@@ -37,7 +37,7 @@ const PROJECTS: Project[] = [
     github: "https://github.com/",
     demo: "#",
     featured: true,
-    gradient: "from-indigo-500/40 via-purple-500/30 to-pink-500/30",
+    gradient: "from-indigo-500/40 via-violet-500/30 to-sky-500/30",
   },
   {
     title: "TaskForge — Team Productivity",
@@ -69,7 +69,7 @@ const PROJECTS: Project[] = [
     stack: ["Next.js", "Tailwind", "remark", "rehype"],
     github: "https://github.com/",
     demo: "/blog",
-    gradient: "from-amber-500/30 via-orange-500/20 to-rose-500/30",
+    gradient: "from-amber-500/30 via-orange-500/20 to-yellow-500/30",
   },
   {
     title: "RAG Knowledge Assistant",
@@ -85,7 +85,7 @@ const PROJECTS: Project[] = [
     stack: ["Next.js", "Node.js", "Postgres", "Better Auth", "Zod"],
     github: "https://github.com/",
     demo: "#",
-    gradient: "from-fuchsia-500/30 via-violet-500/20 to-indigo-500/30",
+    gradient: "from-cyan-500/30 via-violet-500/20 to-indigo-500/30",
   },
 ];
 

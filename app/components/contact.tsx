@@ -53,11 +53,14 @@ export function Contact() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-xs font-medium uppercase tracking-widest text-indigo-400">
+            <p className="bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 bg-clip-text text-xs font-semibold uppercase tracking-widest text-transparent dark:from-indigo-300 dark:via-sky-300 dark:to-cyan-300">
               Contact
             </p>
             <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-              Let&apos;s build something together.
+              Let&apos;s build{" "}
+              <span className="bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 bg-clip-text text-transparent dark:from-indigo-300 dark:via-sky-300 dark:to-cyan-300">
+                something together.
+              </span>
             </h2>
             <p className="mt-4 text-muted-foreground">
               I&apos;m looking for a junior full-stack internship in New York or
@@ -68,10 +71,12 @@ export function Contact() {
               <li>
                 <Link
                   href="mailto:mahbubaislam7010@gmail.com"
-                  className="group inline-flex items-center gap-3 rounded-lg border border-border/60 bg-card/60 px-3 py-2 backdrop-blur transition-colors hover:border-indigo-400/40"
+                  className="group inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-xl backdrop-saturate-150 transition-colors hover:border-indigo-300/60 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10"
                 >
-                  <Mail className="h-4 w-4 text-indigo-300" />
-                  <span className="text-muted-foreground group-hover:text-foreground">
+                  <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-md shadow-indigo-500/30 ring-1 ring-white/30">
+                    <Mail className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-foreground/90 group-hover:text-foreground">
                     mahbubaislam7010@gmail.com
                   </span>
                 </Link>
@@ -81,10 +86,12 @@ export function Contact() {
                   href="https://github.com/"
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-lg border border-border/60 bg-card/60 px-3 py-2 backdrop-blur transition-colors hover:border-indigo-400/40"
+                  className="group inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-xl backdrop-saturate-150 transition-colors hover:border-indigo-300/60 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10"
                 >
-                  <GithubIcon className="h-4 w-4 text-indigo-300" />
-                  <span className="text-muted-foreground group-hover:text-foreground">
+                  <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-slate-300 via-slate-100 to-white text-slate-900 shadow-md shadow-black/20 ring-1 ring-white/30">
+                    <GithubIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-foreground/90 group-hover:text-foreground">
                     GitHub
                   </span>
                 </Link>
@@ -94,10 +101,12 @@ export function Contact() {
                   href="https://linkedin.com/"
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-lg border border-border/60 bg-card/60 px-3 py-2 backdrop-blur transition-colors hover:border-indigo-400/40"
+                  className="group inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-xl backdrop-saturate-150 transition-colors hover:border-indigo-300/60 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10"
                 >
-                  <LinkedinIcon className="h-4 w-4 text-indigo-300" />
-                  <span className="text-muted-foreground group-hover:text-foreground">
+                  <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-sky-400 via-blue-500 to-indigo-500 text-white shadow-md shadow-sky-500/30 ring-1 ring-white/30">
+                    <LinkedinIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-foreground/90 group-hover:text-foreground">
                     LinkedIn
                   </span>
                 </Link>
@@ -111,17 +120,29 @@ export function Contact() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.05 }}
             onSubmit={onSubmit}
-            className="rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur"
+            className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-6 shadow-lg shadow-black/10 backdrop-blur-xl backdrop-saturate-150 sm:p-8 dark:bg-white/5 dark:shadow-black/40"
           >
+            {/* soft gradient sheen behind the glass */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-px -z-10 rounded-2xl bg-linear-to-br from-indigo-400/20 via-sky-400/10 to-cyan-400/20 opacity-60"
+            />
             <div className="grid gap-4">
               <div className="grid gap-1.5">
-                <label htmlFor="name" className="text-sm font-medium">
+                <label htmlFor="name" className="text-sm font-medium text-foreground">
                   Name
                 </label>
-                <Input id="name" name="name" required minLength={2} placeholder="Jane Doe" />
+                <Input
+                  id="name"
+                  name="name"
+                  required
+                  minLength={2}
+                  placeholder="Jane Doe"
+                  className="border-white/20 bg-white/30 text-foreground placeholder:text-muted-foreground/80 focus-visible:border-indigo-300/60 focus-visible:ring-indigo-300/40 dark:bg-white/10"
+                />
               </div>
               <div className="grid gap-1.5">
-                <label htmlFor="email" className="text-sm font-medium">
+                <label htmlFor="email" className="text-sm font-medium text-foreground">
                   Email
                 </label>
                 <Input
@@ -130,10 +151,11 @@ export function Contact() {
                   type="email"
                   required
                   placeholder="you@company.com"
+                  className="border-white/20 bg-white/30 text-foreground placeholder:text-muted-foreground/80 focus-visible:border-indigo-300/60 focus-visible:ring-indigo-300/40 dark:bg-white/10"
                 />
               </div>
               <div className="grid gap-1.5">
-                <label htmlFor="message" className="text-sm font-medium">
+                <label htmlFor="message" className="text-sm font-medium text-foreground">
                   Message
                 </label>
                 <Textarea
@@ -143,10 +165,15 @@ export function Contact() {
                   minLength={10}
                   rows={5}
                   placeholder="Tell me a little about your team or role..."
+                  className="border-white/20 bg-white/30 text-foreground placeholder:text-muted-foreground/80 focus-visible:border-indigo-300/60 focus-visible:ring-indigo-300/40 dark:bg-white/10"
                 />
               </div>
 
-              <Button type="submit" disabled={status === "loading"} className="mt-2">
+              <Button
+                type="submit"
+                disabled={status === "loading"}
+                className="mt-2 bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/30 ring-1 ring-white/20 hover:from-indigo-400 hover:via-sky-400 hover:to-cyan-400"
+              >
                 {status === "loading" ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" /> Sending
