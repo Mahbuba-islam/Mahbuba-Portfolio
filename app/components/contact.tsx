@@ -2,11 +2,12 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { GithubIcon, LinkedinIcon } from "./brand-icons";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -82,7 +83,7 @@ export function Contact() {
                   rel="noreferrer"
                   className="group inline-flex items-center gap-3 rounded-lg border border-border/60 bg-card/60 px-3 py-2 backdrop-blur transition-colors hover:border-indigo-400/40"
                 >
-                  <Github className="h-4 w-4 text-indigo-300" />
+                  <GithubIcon className="h-4 w-4 text-indigo-300" />
                   <span className="text-muted-foreground group-hover:text-foreground">
                     GitHub
                   </span>
@@ -95,7 +96,7 @@ export function Contact() {
                   rel="noreferrer"
                   className="group inline-flex items-center gap-3 rounded-lg border border-border/60 bg-card/60 px-3 py-2 backdrop-blur transition-colors hover:border-indigo-400/40"
                 >
-                  <Linkedin className="h-4 w-4 text-indigo-300" />
+                  <LinkedinIcon className="h-4 w-4 text-indigo-300" />
                   <span className="text-muted-foreground group-hover:text-foreground">
                     LinkedIn
                   </span>

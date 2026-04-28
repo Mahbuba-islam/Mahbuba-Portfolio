@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./brand-icons";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -27,7 +28,7 @@ export function Footer() {
               rel="noreferrer"
               className="rounded-md p-2 transition-colors hover:bg-muted hover:text-foreground"
             >
-              <Github className="h-4 w-4" />
+              <GithubIcon className="h-4 w-4" />
             </Link>
           </li>
           <li>
@@ -38,7 +39,7 @@ export function Footer() {
               rel="noreferrer"
               className="rounded-md p-2 transition-colors hover:bg-muted hover:text-foreground"
             >
-              <Linkedin className="h-4 w-4" />
+              <LinkedinIcon className="h-4 w-4" />
             </Link>
           </li>
         </ul>

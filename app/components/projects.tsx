@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight, Github, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { GithubIcon } from "./brand-icons";
 
 type Project = {
   title: string;
@@ -86,7 +87,7 @@ export function Projects() {
           </div>
           <Button asChild variant="outline" size="sm">
             <Link href="https://github.com/" target="_blank" rel="noreferrer">
-              <Github className="h-4 w-4" /> All projects
+              <GithubIcon className="h-4 w-4" /> All projects
             </Link>
           </Button>
         </div>
@@ -160,7 +161,7 @@ export function Projects() {
               <div className="mt-6 flex flex-wrap gap-2">
                 <Button asChild size="sm" variant="outline">
                   <Link href={p.github} target="_blank" rel="noreferrer">
-                    <Github className="h-4 w-4" /> GitHub
+                    <GithubIcon className="h-4 w-4" /> GitHub
                   </Link>
                 </Button>
                 <Button asChild size="sm">
