@@ -9,7 +9,11 @@ export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
-  React.useEffect(() => setMounted(true), []);
+  // Mount flag: ensures icon matches client-resolved theme without hydration mismatch.
+  React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   const current = mounted ? (theme === "system" ? resolvedTheme : theme) : "dark";
 

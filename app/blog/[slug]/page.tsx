@@ -85,7 +85,6 @@ export default async function BlogPostPage({
       <article className="mx-auto w-full max-w-3xl xl:mx-0">
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
         />
         <Link

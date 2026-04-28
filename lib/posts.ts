@@ -69,7 +69,11 @@ export function getAllPosts(): PostMeta[] {
   return getPostSlugs()
     .map((slug) => getPostBySlug(slug))
     .filter((p): p is Post => p !== null)
-    .map(({ content: _content, ...meta }) => meta)
+    .map((p) => {
+      const { content, ...meta } = p;
+      void content;
+      return meta;
+    })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 

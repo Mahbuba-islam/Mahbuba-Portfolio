@@ -19,7 +19,9 @@ export function PostStats({ slug }: { slug: string }) {
   const [pending, setPending] = React.useState<boolean>(false);
   const incremented = React.useRef(false);
 
+  // Hydrate liked state from localStorage after mount to avoid SSR mismatch.
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLiked(
       typeof window !== "undefined" &&
         localStorage.getItem(STORAGE_KEY(slug)) === "1",

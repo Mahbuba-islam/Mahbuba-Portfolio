@@ -1,12 +1,14 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { CommandPaletteTrigger } from "./command-palette";
+import { palette } from "@/lib/palette";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -44,12 +46,34 @@ export function Navbar() {
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className="group flex items-center gap-2 text-sm font-semibold tracking-tight"
+          className="group flex items-center gap-2.5 text-sm font-semibold tracking-tight"
         >
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-linear-to-br from-blue-500 via-indigo-500 to-purple-500 text-white shadow-lg shadow-indigo-500/20 ring-1 ring-white/20">
-            <Sparkles className="h-4 w-4" />
+          <span
+            className="relative grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-full ring-2 ring-offset-2 ring-offset-background transition-transform group-hover:scale-105"
+            style={{
+              boxShadow: `0 0 0 1px color-mix(in oklab, ${palette.Vibrant} 50%, transparent), 0 4px 18px -4px ${palette.Vibrant}66`,
+              background: `linear-gradient(135deg, ${palette.LightVibrant}, ${palette.Vibrant}, ${palette.DarkVibrant})`,
+            }}
+          >
+            {palette.image ? (
+              <Image
+                src={palette.image}
+                alt="Mahbuba Akter"
+                width={72}
+                height={72}
+                priority
+                className="h-full w-full rounded-full object-cover"
+              />
+            ) : (
+              <span className="text-[11px] font-bold text-white">MA</span>
+            )}
           </span>
-          <span className="hidden sm:inline">Mahbuba Akter</span>
+          <span className="hidden flex-col leading-tight sm:flex">
+            <span className="text-sm">Mahbuba Akter</span>
+            <span className="text-[10px] font-normal text-muted-foreground">
+              Junior Full Stack Dev
+            </span>
+          </span>
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

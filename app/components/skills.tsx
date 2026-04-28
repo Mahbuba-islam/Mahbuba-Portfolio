@@ -9,6 +9,7 @@ import {
   Brain,
   type LucideIcon,
 } from "lucide-react";
+import { SkillIcon } from "./skill-icon";
 
 type Group = {
   icon: LucideIcon;
@@ -98,21 +99,29 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/5"
+              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-border hover:shadow-xl hover:shadow-indigo-500/5"
             >
+              {/* hover gradient sheen */}
               <div
-                className={`grid h-10 w-10 place-items-center rounded-xl bg-linear-to-br ring-1 ${g.accent}`}
-              >
-                <g.icon className="h-5 w-5" />
+                aria-hidden
+                className={`pointer-events-none absolute inset-0 -z-10 bg-linear-to-br opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${g.accent}`}
+              />
+              <div className="flex items-center gap-3">
+                <div
+                  className={`grid h-10 w-10 place-items-center rounded-xl bg-linear-to-br ring-1 ${g.accent}`}
+                >
+                  <g.icon className="h-5 w-5" />
+                </div>
+                <h3 className="text-lg font-semibold">{g.label}</h3>
               </div>
-              <h3 className="mt-4 text-lg font-semibold">{g.label}</h3>
-              <ul className="mt-3 flex flex-wrap gap-1.5">
+              <ul className="mt-4 grid gap-1.5">
                 {g.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-md border border-border/60 bg-background/60 px-2 py-1 text-xs text-muted-foreground transition-colors group-hover:text-foreground"
+                    className="flex items-center gap-2 rounded-md border border-border/60 bg-background/60 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors group-hover:text-foreground"
                   >
-                    {item}
+                    <SkillIcon name={item} className="h-3.5 w-3.5 shrink-0" />
+                    <span className="truncate">{item}</span>
                   </li>
                 ))}
               </ul>

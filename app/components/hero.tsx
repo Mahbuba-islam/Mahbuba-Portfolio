@@ -9,11 +9,21 @@ import { palette } from "@/lib/palette";
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-16 pb-20 sm:pt-24 sm:pb-28">
+    <section className="relative isolate overflow-hidden pt-20 pb-24 sm:pt-28 sm:pb-32 lg:pt-32">
       {/* Palette-driven gradient background */}
       <div
         aria-hidden
         className="bg-palette-radial pointer-events-none absolute inset-0 -z-10 opacity-70"
+      />
+      {/* Subtle grid */}
+      <div
+        aria-hidden
+        className="bg-grid pointer-events-none absolute inset-0 -z-10 opacity-[0.07]"
+      />
+      {/* Soft top-to-bottom overlay so content reads cleanly */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-background/0 via-background/20 to-background"
       />
       <div
         aria-hidden
