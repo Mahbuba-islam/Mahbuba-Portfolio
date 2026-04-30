@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { GithubIcon, LinkedinIcon } from "./brand-icons";
+import { BurstEffect, type BurstHandle } from "./burst-effect";
 
 type Status = "idle" | "loading" | "success" | "warning" | "error";
 
@@ -15,11 +16,13 @@ export function Contact() {
   const [status, setStatus] = React.useState<Status>("idle");
   const [error, setError] = React.useState<string | null>(null);
   const [warning, setWarning] = React.useState<string | null>(null);
+  const burstRef = React.useRef<BurstHandle>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const form = e.currentTarget; // ✅ cache before async boundary
+    burstRef.current?.trigger();
 
     setStatus("loading");
     setError(null);
@@ -70,7 +73,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 py-20 sm:py-28">
+    <section id="contact" className="scroll-mt-24 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 md:grid-cols-2">
           <motion.div
@@ -90,10 +93,7 @@ export function Contact() {
               </span>
             </h2>
 
-            <p className="mt-4 text-muted-foreground">
-              I&apos;m looking for a junior full-stack internship in New York or remote.
-              Drop me a message — I read everything.
-            </p>
+          
 
             <ul className="mt-8 space-y-3 text-sm">
               <li>
@@ -186,25 +186,28 @@ export function Contact() {
                 />
               </div>
 
-              <Button
-                type="submit"
-                disabled={status === "loading"}
-                className="mt-2 bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/30 ring-1 ring-white/20"
-              >
-                {status === "loading" ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin" /> Sending
-                  </>
-                ) : status === "success" ? (
-                  <>
-                    <CheckCircle2 className="h-4 w-4" /> Message sent
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-4 w-4" /> Send message
-                  </>
-                )}
-              </Button>
+              <div className="relative inline-flex">
+                <Button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="relative mt-2 overflow-visible bg-brand-gradient text-white shadow-lg shadow-blue-500/30 ring-1 ring-white/20"
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Sending
+                    </>
+                  ) : status === "success" ? (
+                    <>
+                      <CheckCircle2 className="h-4 w-4" /> Message sent
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" /> Send message
+                    </>
+                  )}
+                </Button>
+                <BurstEffect ref={burstRef} />
+              </div>
 
               {status === "error" && (
                 <p className="text-sm text-red-500">{error}</p>

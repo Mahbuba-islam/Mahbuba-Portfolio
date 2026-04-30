@@ -22,7 +22,7 @@ export default function BlogIndexPage() {
         <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
           Writing about the things I&apos;m building.
         </h1>
-        <p className="mt-4 text-muted-foreground">
+        <p className="mt-4 text-muted-foreground text-sm">
           Short, practical posts on full-stack development, real-time systems,
           and modern web UI.
         </p>
@@ -34,7 +34,7 @@ export default function BlogIndexPage() {
             <li key={tag}>
               <Link
                 href={`/blog/tag/${tagToSlug(tag)}`}
-                className="inline-flex items-center gap-1 rounded-md border border-border/60 bg-background/60 px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-indigo-400/40 hover:text-indigo-300"
+                className="inline-flex text-xs items-center gap-1 rounded-md border border-border/60 bg-background/60 px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-indigo-400/40 hover:text-indigo-300"
               >
                 #{tag}
                 <span className="text-muted-foreground/60">{count}</span>
@@ -45,7 +45,7 @@ export default function BlogIndexPage() {
       )}
 
       {posts.length === 0 ? (
-        <div className="mt-12 rounded-2xl border border-dashed border-border/60 p-10 text-center text-sm text-muted-foreground">
+        <div className="mt-12 text-xs rounded-2xl border border-dashed border-border/60 p-10 text-center  text-muted-foreground">
           No posts yet — check back soon.
         </div>
       ) : (

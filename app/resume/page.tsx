@@ -18,22 +18,22 @@ import { PrintButton } from "./print-button";
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Resume of Mahbuba Akter — Junior Full Stack Web Developer based in New York.",
+    "Resume of Mahbuba Akter — Full Stack Web Developer based in New York.",
   alternates: { canonical: "/resume" },
 };
 
 const CONTACT = {
   name: "Mahbuba Akter",
-  role: "Junior Full Stack Web Developer",
+  role: "Full Stack Web Developer",
   email: "mahbubaislam7010@gmail.com",
   location: "New York, NY",
-  website: "https://mahbuba.dev",
-  github: "https://github.com/",
-  linkedin: "https://linkedin.com/",
+  website: "https://mahbuba-portfolio.vercel.app",
+  github: "https://github.com/account",
+  linkedin: "https://www.linkedin.com/in/mahbuba-akter-020157211/",
 };
 
 const SUMMARY =
-  "Junior Full Stack Web Developer based in New York, focused on building modern, scalable, real-time web applications. Comfortable across the stack — from designing PostgreSQL/MongoDB schemas with Prisma to crafting accessible, animated UIs with Next.js, React, and Tailwind. Trained at Programming Hero (Levels 1 & 2). Curious about WebSockets, streaming UIs, and AI-assisted product features.";
+  "Full‑Stack Web Developer skilled in building modern, scalable, and user‑focused applications using React, Next.js, Node.js, TypeScript, PostgreSQL, and MongoDB. Strong foundation in authentication systems, API development, database modeling, and responsive UI engineering. Passionate about solving real‑world problems, writing clean and maintainable code, and delivering high‑quality digital experiences.";
 
 const SKILLS: { label: string; items: string[] }[] = [
   {
@@ -41,13 +41,12 @@ const SKILLS: { label: string; items: string[] }[] = [
     items: [
       "HTML",
       "CSS",
+      "Tailwind CSS",
       "JavaScript",
       "TypeScript",
       "React",
       "Next.js",
-      "Tailwind CSS",
-      "ShadCN UI",
-      "React Query / TanStack Query",
+      "TanStack Query",
       "Axios",
     ],
   },
@@ -57,81 +56,97 @@ const SKILLS: { label: string; items: string[] }[] = [
       "Node.js",
       "Express.js",
       "REST APIs",
-      "Zod",
+      "Prisma ORM",
       "Better Auth",
       "JWT",
-      "RAG",
+      "Firebase Authentication",
     ],
   },
   {
     label: "Database",
-    items: ["MongoDB", "PostgreSQL", "Prisma ORM", "Firebase"],
+    items: ["PostgreSQL", "MongoDB", "Prisma ORM"],
   },
-  { label: "Tools", items: ["Git", "Docker"] },
-  { label: "Engineering", items: ["Problem Solving (JS)", "Critical Thinker"] },
+  {
+    label: "Tools",
+    items: ["Git", "Docker"],
+  },
+  {
+    label: "Engineering",
+    items: ["Problem Solving (JavaScript)", "Critical Thinking"],
+  },
 ];
 
 const PROJECTS = [
   {
-    title: "Real-Time Full Stack Application",
-    tagline: "Live data, presence, and instant collaboration.",
+    title: "ConsultEdge — Expert Consultation SaaS Platform",
+    tagline: "Role-based dashboards, real-time messaging, notifications, and Stripe payments.",
     bullets: [
-      "Designed a Postgres + Prisma schema and a typed REST API with Zod validation.",
-      "Implemented WebSocket presence and optimistic UI for sub-100ms perceived latency.",
-      "Authenticated with Better Auth and JWT-protected routes.",
+      "Built a full-stack consultation platform with dashboards for clients, experts, and admins.",
+      "Implemented real-time messaging and activity updates using WebSockets.",
+      "Added a complete notification system for bookings, status updates, and alerts.",
+      "Integrated Stripe for secure payments with webhook-based status automation.",
+      "Designed a premium UI with Tailwind CSS and reusable components.",
+      "Implemented secure authentication using Better Auth + JWT.",
     ],
-    stack: ["Next.js", "Node.js", "Postgres", "Prisma", "Better Auth"],
+    stack: ["Next.js", "Node.js", "Prisma", "PostgreSQL", "Stripe", "WebSockets"],
   },
   {
-    title: "TaskForge — Team Productivity",
-    tagline: "Drag-and-drop boards, filters, and team analytics.",
+    title: "CareerCode — Full Stack Job Portal",
+    tagline: "Job posting, job application, dashboards, and secure authentication.",
     bullets: [
-      "Built drag-and-drop kanban with optimistic mutations via TanStack Query.",
-      "Modeled multi-tenant data with row-level access control.",
-      "Shipped accessible animations with Framer Motion.",
+      "Developed a job portal with job posting, job application, and user dashboards.",
+      "Implemented secure login, protected routes, and Prisma-based data models.",
+      "Integrated TanStack Query + Axios for smooth data fetching.",
+      "Designed a modern, responsive UI with Tailwind CSS.",
     ],
-    stack: ["Next.js", "TypeScript", "TanStack Query", "Postgres", "Prisma"],
+    stack: ["Next.js", "Node.js", "Prisma", "MongoDB", "TanStack Query"],
   },
   {
-    title: "RAG Knowledge Assistant",
-    tagline: "Retrieval-augmented chatbot over private documents.",
+    title: "E‑Commerce CRUD Application",
+    tagline: "Product management, filtering, pagination, and responsive UI.",
     bullets: [
-      "Document ingestion + chunking pipeline with embeddings and similarity search.",
-      "Streamed answers with citations and per-source confidence.",
-      "JWT-protected admin upload with Zod-validated payloads.",
+      "Built full CRUD operations with Express.js and MongoDB.",
+      "Added product filtering, pagination, and error handling.",
+      "Designed a responsive UI using React + Tailwind CSS.",
+      "Implemented form validation and optimized API communication with Axios.",
     ],
-    stack: ["Next.js", "Node.js", "Postgres", "Better Auth", "Zod"],
+    stack: ["React", "Express.js", "MongoDB", "Axios"],
   },
   {
-    title: "DevBlog — Markdown CMS",
-    tagline: "Headless blog with code highlighting and tags.",
+    title: "Portfolio Website",
+    tagline: "Modern, animated, recruiter-friendly portfolio with SEO optimization.",
     bullets: [
-      "Markdown + frontmatter pipeline with reading time and tag pages.",
-      "Prism syntax highlighting and tuned typography.",
-      "SEO metadata, OpenGraph images, and RSS feed.",
+      "Built a modern portfolio with animations, glassmorphism, and gradients.",
+      "Added blog system, dynamic routing, and theme support.",
+      "Optimized for SEO and performance.",
     ],
-    stack: ["Next.js", "Tailwind", "remark", "rehype"],
+    stack: ["Next.js", "Tailwind CSS"],
   },
 ];
 
 const EXPERIENCE = [
   {
-    role: "Independent Full Stack Projects",
+    role: "Independent Full Stack Developer",
     org: "Self-directed",
     period: "2024 — Present",
     location: "New York, NY",
     bullets: [
-      "Designed and shipped multiple end-to-end web apps using Next.js, Node.js, and Postgres/MongoDB.",
-      "Practiced production patterns: typed APIs, authentication, validation, testing, and deployment.",
-      "Wrote technical posts on real-time apps, Next.js, and full-stack workflows.",
+      "Designed and shipped multiple full-stack applications using Next.js, Node.js, PostgreSQL, and MongoDB.",
+      "Implemented production-grade patterns: authentication, validation, API design, and deployment.",
+      "Built SaaS platforms, job portals, and real-time applications.",
     ],
   },
 ];
 
 const EDUCATION = [
   {
+    school: "Higher Secondary Certificate (HSC)",
+    detail: "Completed in Bangladesh.",
+    period: "Completed",
+  },
+  {
     school: "Programming Hero — Full Stack Bootcamp",
-    detail: "Level 1 & Level 2 — Modern JavaScript, React, Node.js, Databases.",
+    detail: "Level‑2 Web Development & Level‑2 Next‑Level Web Development.",
     period: "Completed",
   },
 ];
@@ -189,7 +204,7 @@ export default function ResumePage() {
                 href={CONTACT.website}
                 className="underline-offset-2 hover:underline"
               >
-                mahbuba.dev
+                {CONTACT.website.replace("https://", "")}
               </a>
             </li>
             <li className="inline-flex items-center gap-1.5">
@@ -316,7 +331,8 @@ export default function ResumePage() {
             href={CONTACT.website}
             className="inline-flex items-center gap-1 underline-offset-2 hover:underline"
           >
-            mahbuba.dev <ExternalLink className="h-3 w-3" />
+            {CONTACT.website.replace("https://", "")}
+            <ExternalLink className="h-3 w-3" />
           </a>
         </footer>
       </article>

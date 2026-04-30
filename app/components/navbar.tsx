@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, Sparkles, X } from "lucide-react";
+import { Menu, MessageSquareText, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { CommandPaletteTrigger } from "./command-palette";
@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
   { label: "Skills", href: "/#skills" },
   { label: "Projects", href: "/#projects" },
   { label: "Blog", href: "/blog" },
@@ -41,7 +42,7 @@ export function Navbar() {
       setActiveHash("");
       return;
     }
-    const ids = ["about", "skills", "projects", "contact"];
+    const ids = ["about", "services", "skills", "projects", "contact"];
     const els = ids
       .map((id) => document.getElementById(id))
       .filter((e): e is HTMLElement => !!e);
@@ -84,23 +85,20 @@ export function Navbar() {
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className="group flex items-center gap-2.5 text-sm font-semibold tracking-tight"
+          className="group flex items-center gap-3 text-sm font-semibold tracking-tight"
         >
-         
+          <span className="relative grid h-9.5 w-9.5 shrink-0 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-black/10 shadow-md shadow-blue-500/20 dark:bg-white dark:ring-white/40">
+            <Image
+              src="/img/my logo.png"
+              alt="Mahbuba Akter logo"
+              width={55}
+              height={55}
+              priority
+              className="relative h-9.5 w-9.5 object-contain"
+            />
+          </span>
 
-<span className="hidden sm:flex flex-col leading-tight px-2 py-1 rounded-lg 
-  backdrop-blur-md bg-white/10 border border-white/20 shadow-sm">
-  <span className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent">
-    Mahbuba Akter
-  </span>
-  <span className="text-[10px] text-muted-foreground">
-    Junior Full Stack Dev
-  </span>
-</span>
-
-
-
-
+          
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
@@ -156,14 +154,14 @@ export function Navbar() {
               transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
             />
             {/* sweeping shine */}
-            <motion.span
+             <motion.span
               aria-hidden
               className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 skew-x-[-20deg] bg-linear-to-r from-transparent via-white/40 to-transparent"
               animate={{ x: ["0%", "320%"] }}
               transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.4 }}
-            />
-            <Sparkles className="h-3.5 w-3.5 transition-transform group-hover:rotate-12" />
-            <span>Hire me</span>
+            /> 
+            <MessageSquareText className="h-3.5 w-3.5 transition-transform group-hover:rotate-12" />
+            <span>Let&apos;s Talk</span>
             {/* available dot */}
             <span className="relative ml-0.5 flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />

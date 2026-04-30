@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Bot,
@@ -11,21 +11,11 @@ import {
   MessageSquare,
   Sparkles,
   Workflow,
+  Zap,
+  Shield,
   type LucideIcon,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { GithubIcon } from "./brand-icons";
-import { TiltCard } from "./tilt-card";
-import { cn } from "@/lib/utils";
-
-type IconLike = React.ComponentType<{ className?: string }>;
-
-type ProjectBadge = {
-  label: string;
-  icon: LucideIcon;
-  /** Tailwind color classes for the chip. */
-  className: string;
-};
 
 type Project = {
   title: string;
@@ -36,48 +26,34 @@ type Project = {
   github: string;
   demo: string;
   featured?: boolean;
-  gradient: string;
-  badges: ProjectBadge[];
+  icon: LucideIcon;
+  badge?: { label: string; icon: LucideIcon };
 };
 
 const PROJECTS: Project[] = [
   {
-    title: "Real-Time Full Stack Application",
-    tagline: "Real-time chat, notifications, live sessions, AI",
+    title: "Consultdge",
+    tagline: "Chat, notifications, live sessions, AI",
     description:
-      "An end-to-end real-time platform with chat, push notifications, live collaborative sessions, and AI-assisted features. Built with WebSockets and a typed full-stack architecture.",
+      "It’s a full-stack consultation platform where users can connect with experts, book sessions, communicate in real time, and complete the entire consultation workflow — including chat, video calls, AI features, and payments — inside a single system.",
     features: [
       "Real-time chat (Socket.io)",
       "Live notifications",
       "Collaborative sessions",
       "AI feature integration",
-      "Auth + role-based access",
     ],
     stack: ["Next.js", "Node.js", "Socket.io", "Prisma", "PostgreSQL"],
     github: "https://github.com/",
     demo: "https://consultedge-frontend.vercel.app",
     featured: true,
-    gradient: "from-indigo-500/40 via-violet-500/30 to-sky-500/30",
-    badges: [
-      {
-        label: "Featured",
-        icon: Sparkles,
-        className:
-          "bg-linear-to-r from-indigo-500/20 via-sky-500/20 to-cyan-500/20 text-white ring-1 ring-inset ring-indigo-400/40 dark:text-blue-800",
-      },
-      {
-        label: "AI Project",
-        icon: Bot,
-        className:
-          "bg-violet-500/15 text-violet-700 ring-1 ring-inset ring-violet-400/40 dark:text-violet-200",
-      },
-    ],
+    icon: Zap,
+    badge: { label: "Featured", icon: Sparkles },
   },
   {
-    title: "TaskForge — Team Productivity",
+    title: "TaskForge",
     tagline: "Kanban + analytics for small teams",
     description:
-      "A modern team task manager with drag-and-drop boards, presence indicators, and lightweight analytics dashboards.",
+      "Modern team task manager with drag-and-drop boards, presence indicators, and lightweight analytics dashboards.",
     features: [
       "Drag-and-drop kanban",
       "Presence avatars",
@@ -87,21 +63,14 @@ const PROJECTS: Project[] = [
     stack: ["Next.js", "TypeScript", "MongoDB", "TanStack Query"],
     github: "https://github.com/",
     demo: "#",
-    gradient: "from-sky-500/30 via-cyan-500/20 to-emerald-500/30",
-    badges: [
-      {
-        label: "Productivity",
-        icon: Workflow,
-        className:
-          "bg-emerald-500/15 text-emerald-700 ring-1 ring-inset ring-emerald-400/40 dark:text-emerald-200",
-      },
-    ],
+    icon: Workflow,
+    badge: { label: "Productivity", icon: Workflow },
   },
   {
-    title: "DevBlog — Markdown CMS",
+    title: "DevBlog",
     tagline: "Headless blog with code highlighting",
     description:
-      "A polished blog engine with Markdown content, syntax-highlighted code blocks, and great typography out of the box.",
+      "Polished blog engine with Markdown, syntax-highlighted code blocks, and great typography out of the box.",
     features: [
       "Markdown + frontmatter",
       "Prism code highlighting",
@@ -111,284 +80,187 @@ const PROJECTS: Project[] = [
     stack: ["Next.js", "Tailwind", "remark", "rehype"],
     github: "https://github.com/",
     demo: "/blog",
-    gradient: "from-amber-500/30 via-orange-500/20 to-yellow-500/30",
-    badges: [
-      {
-        label: "Open Source",
-        icon: Layers,
-        className:
-          "bg-amber-500/15 text-amber-700 ring-1 ring-inset ring-amber-400/40 dark:text-amber-200",
-      },
-    ],
+    icon: Layers,
+    badge: { label: "Open Source", icon: Layers },
   },
   {
     title: "RAG Knowledge Assistant",
     tagline: "Retrieval-augmented chatbot over your docs",
     description:
-      "A RAG-powered assistant that answers questions from a private knowledge base — chunked, embedded, and retrieved with citations.",
+      "RAG-powered assistant that answers questions from a private knowledge base — chunked, embedded, retrieved with citations.",
     features: [
       "Document ingestion + chunking",
-      "Vector embeddings + similarity search",
-      "Streamed answers with citations",
+      "Vector embeddings",
+      "Streamed answers + citations",
       "JWT-protected admin upload",
     ],
     stack: ["Next.js", "Node.js", "Postgres", "Better Auth", "Zod"],
     github: "https://github.com/",
     demo: "#",
-    gradient: "from-cyan-500/30 via-violet-500/20 to-indigo-500/30",
-    badges: [
-      {
-        label: "AI Project",
-        icon: Bot,
-        className:
-          "bg-violet-500/15 text-violet-700 ring-1 ring-inset ring-violet-400/40 dark:text-violet-200",
-      },
-      {
-        label: "RAG",
-        icon: MessageSquare,
-        className:
-          "bg-cyan-500/15 text-cyan-700 ring-1 ring-inset ring-cyan-400/40 dark:text-cyan-200",
-      },
+    icon: Bot,
+    badge: { label: "AI Project", icon: Bot },
+  },
+  {
+    title: "AuthGuard",
+    tagline: "Drop-in auth starter with social + magic link",
+    description:
+      "Production-ready authentication starter with email magic links, OAuth, role-based access, and a typed admin panel.",
+    features: [
+      "Magic link + OAuth",
+      "Role-based access",
+      "Audit logs",
+      "Typed admin panel",
     ],
+    stack: ["Next.js", "Better Auth", "Prisma", "PostgreSQL"],
+    github: "https://github.com/",
+    demo: "#",
+    icon: Shield,
+    badge: { label: "Security", icon: Shield },
+  },
+  {
+    title: "MessageStream",
+    tagline: "Multi-channel inbox & live notifications",
+    description:
+      "Unified inbox aggregating chat, email, and webhook events into a single live, searchable, real-time stream.",
+    features: [
+      "Unified inbox",
+      "Webhook ingest",
+      "Realtime search",
+      "Slack-style threads",
+    ],
+    stack: ["Next.js", "Socket.io", "Prisma", "Postgres"],
+    github: "https://github.com/",
+    demo: "#",
+    icon: MessageSquare,
+    badge: { label: "Realtime", icon: MessageSquare },
   },
 ];
 
-/** Glass button with ripple-on-click + animated trailing icon. */
-function GlassButton({
-  href,
-  external,
-  variant = "outline",
-  icon: Icon,
-  iconPosition = "left",
-  iconAnimation = "translate",
-  children,
-}: {
-  href: string;
-  external?: boolean;
-  variant?: "outline" | "primary";
-  icon: IconLike;
-  iconPosition?: "left" | "right";
-  iconAnimation?: "translate" | "rotate";
-  children: React.ReactNode;
-}) {
-  const ref = React.useRef<HTMLAnchorElement | null>(null);
-
-  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
-    const a = ref.current;
-    if (!a) return;
-    const rect = a.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const span = document.createElement("span");
-    span.className = "ripple";
-    span.style.width = span.style.height = `${size}px`;
-    span.style.left = `${e.clientX - rect.left - size / 2}px`;
-    span.style.top = `${e.clientY - rect.top - size / 2}px`;
-    a.appendChild(span);
-    window.setTimeout(() => span.remove(), 650);
-  }
-
-  const base =
-    "group/btn relative inline-flex h-9 items-center gap-1.5 overflow-hidden rounded-md px-3.5 text-sm font-medium transition-all";
-  const styles =
-    variant === "primary"
-      ? "bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-lg shadow-indigo-500/30 ring-1 ring-white/20 hover:scale-[1.03] hover:shadow-indigo-500/40"
-      : "border border-white/20 bg-white/10 text-foreground/90 backdrop-blur-xl hover:scale-[1.03] hover:border-indigo-400/50 hover:bg-white/20 dark:bg-white/5";
-
-  const iconCls = cn(
-    "h-4 w-4 transition-transform duration-300",
-    iconAnimation === "translate" &&
-      iconPosition === "right" &&
-      "group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5",
-    iconAnimation === "translate" &&
-      iconPosition === "left" &&
-      "group-hover/btn:-translate-x-0.5",
-    iconAnimation === "rotate" && "group-hover/btn:rotate-12",
-  );
-
-  return (
-    <Link
-      ref={ref}
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer" : undefined}
-      onClick={handleClick}
-      className={cn(base, styles)}
-    >
-      {iconPosition === "left" && <Icon className={iconCls} />}
-      <span>{children}</span>
-      {iconPosition === "right" && <Icon className={iconCls} />}
-    </Link>
-  );
-}
-
 export function Projects() {
   return (
-    <section id="projects" className="relative scroll-mt-24 py-20 sm:py-28">
-      {/* ambient gradient */}
+    <section id="projects" className="relative scroll-mt-24 py-12 sm:py-16">
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-20 top-1/4 -z-10 h-72 w-72 rounded-full bg-linear-to-br from-indigo-400/15 via-sky-400/10 to-cyan-400/15 blur-3xl"
+        className="pointer-events-none absolute -top-20 right-0 -z-10 h-72 w-72 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(closest-side, color-mix(in oklab, var(--brand-purple) 25%, transparent), transparent 70%)",
+        }}
       />
-
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-          <div className="max-w-2xl">
-            <p className="bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 bg-clip-text text-xs font-semibold uppercase tracking-widest text-transparent dark:from-indigo-300 dark:via-sky-300 dark:to-cyan-300">
-              Projects
-            </p>
-            <h2 className="mt-3 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              Selected work I&apos;m{" "}
-              <span className="bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 bg-clip-text text-transparent dark:from-indigo-300 dark:via-sky-300 dark:to-cyan-300">
-                proud of
-              </span>
-              .
-            </h2>
-          </div>
-          <GlassButton
-            href="https://github.com/"
-            external
-            icon={GithubIcon}
-            iconPosition="left"
-          >
-            All projects
-          </GlassButton>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex flex-col items-start gap-3">
+          <p className="text-xs font-semibold uppercase tracking-widest text-brand-gradient">
+            Projects
+          </p>
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            Selected <span className="text-brand-gradient">work</span>.
+          </h2>
+          <p className="max-w-2xl text-muted-foreground text-sm">
+            A collection of full-stack, real-time, and AI-powered products
+            shipped end-to-end — design, data model, API, and UI.
+          </p>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{
-                duration: 0.55,
-                delay: i * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{ scale: 1.015, rotate: 0.3 }}
-              className={cn(p.featured && "lg:col-span-2")}
-            >
-              <TiltCard
-                as="article"
-                className="gradient-border group relative isolate overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-6 shadow-lg backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/15 sm:p-7 dark:bg-black/20"
-              >
-                {/* gradient blob */}
-                <div
-                  aria-hidden
-                  className={cn(
-                    "pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-60 blur-3xl transition-opacity duration-500 group-hover:opacity-90 bg-linear-to-br",
-                    p.gradient,
-                  )}
-                />
-                {/* sweeping sheen */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full"
-                />
-
-                {/* Inner parallax wrapper — translates slightly using TiltCard CSS vars */}
-                <div
-                  className="relative will-change-transform"
-                  style={{
-                    transform:
-                      "translate3d(calc(var(--tilt-y, 0deg) / 6 * 1px), calc(var(--tilt-x, 0deg) / -6 * 1px), 0)",
-                  }}
-                >
-                  {/* Header badges */}
-                  <div className="flex flex-wrap items-center gap-2">
-                    {p.badges.map((b) => (
-                      <Badge
-                        key={b.label}
-                        className={cn("backdrop-blur", b.className)}
-                      >
-                        <b.icon className="h-3 w-3" />
-                        {b.label}
-                      </Badge>
-                    ))}
-                    <span className="text-xs text-muted-foreground">
-                      {p.tagline}
-                    </span>
-                  </div>
-
-                  <h3 className="mt-4 text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2.5 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                    {p.description}
-                  </p>
-
-                  <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                    {/* Features */}
-                    <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-widest text-foreground/60">
-                        Features
-                      </p>
-                      <ul className="mt-3 space-y-2 text-sm">
-                        {p.features.map((f, fi) => (
-                          <motion.li
-                            key={f}
-                            initial={{ opacity: 0, x: -6 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-20%" }}
-                            transition={{
-                              duration: 0.35,
-                              delay: 0.1 + fi * 0.05,
-                              ease: "easeOut",
-                            }}
-                            className="flex items-start gap-2.5 leading-relaxed"
-                          >
-                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-indigo-500 dark:text-indigo-300" />
-                            <span className="text-muted-foreground">{f}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Stack */}
-                    <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-widest text-foreground/60">
-                        Stack
-                      </p>
-                      <ul className="mt-3 flex flex-wrap gap-1.5">
-                        {p.stack.map((s) => (
-                          <li
-                            key={s}
-                            className="rounded-md border border-white/20 bg-white/30 px-2 py-1 text-xs font-medium text-foreground/80 backdrop-blur dark:bg-white/10"
-                          >
-                            {s}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-7 flex flex-wrap gap-2.5">
-                    <GlassButton
-                      href={p.github}
-                      external
-                      icon={GithubIcon}
-                      iconPosition="left"
-                      iconAnimation="rotate"
-                    >
-                      GitHub
-                    </GlassButton>
-                    <GlassButton
-                      href={p.demo}
-                      external={p.demo.startsWith("http")}
-                      icon={ArrowUpRight}
-                      iconPosition="right"
-                      variant="primary"
-                    >
-                      Live demo
-                    </GlassButton>
-                  </div>
-                </div>
-              </TiltCard>
-            </motion.div>
+            <ProjectCard key={p.title} project={p} index={i} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const Icon = project.icon;
+  const BadgeIcon = project.badge?.icon;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/15 bg-white/65 p-6 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.18)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--brand-blue)]/40 hover:shadow-[0_20px_55px_-18px_rgba(59,130,246,0.45)] dark:border-white/10 dark:bg-white/[0.04]"
+    >
+      {/* corner gradient blob */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full opacity-60 blur-3xl transition-opacity duration-500 group-hover:opacity-90"
+        style={{
+          background:
+            "linear-gradient(135deg, var(--brand-purple), var(--brand-blue), var(--brand-cyan))",
+        }}
+      />
+      {/* hairline gradient top accent */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-6 top-0 h-px bg-brand-gradient opacity-80"
+      />
+
+      <header className="flex items-start justify-between gap-3">
+        <span className="icon-halo h-11 w-11 shrink-0 text-white">
+          <Icon className="h-5 w-5" />
+        </span>
+
+        {project.badge && BadgeIcon && (
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/60 px-2.5 py-1 text-[11px] font-semibold text-foreground/80 backdrop-blur dark:border-white/15 dark:bg-white/10">
+            <BadgeIcon className="h-3 w-3" />
+            {project.badge.label}
+          </span>
+        )}
+      </header>
+
+      <h3 className="mt-5 text-xl font-semibold tracking-tight">
+        {project.title}
+      </h3>
+      <p className="mt-1 text-sm font-medium text-brand-gradient">
+        {project.tagline}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        {project.description}
+      </p>
+
+      <ul className="mt-4 space-y-1.5">
+        {project.features.slice(0, 3).map((f) => (
+          <li key={f} className="flex items-start gap-2 text-xs text-foreground/80">
+            <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0" style={{ color: "var(--brand-cyan)" }} />
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-5 flex flex-wrap gap-1.5">
+        {project.stack.map((s) => (
+          <span
+            key={s}
+            className="rounded-md border border-white/30 bg-white/50 px-2 py-0.5 text-[10px] font-medium text-foreground/80 backdrop-blur dark:border-white/15 dark:bg-white/10"
+          >
+            {s}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-8 flex items-center justify-between gap-2 border-t border-white/20 pt-5 dark:border-white/10">
+        <Link
+          href={project.github}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <GithubIcon className="h-3.5 w-3.5" />
+          Code
+        </Link>
+        <Link
+          href={project.demo}
+          target={project.demo.startsWith("http") ? "_blank" : undefined}
+          rel="noreferrer"
+          className="group/btn inline-flex items-center gap-1.5 rounded-full bg-brand-gradient px-3 py-1.5 text-xs font-semibold text-white shadow-md shadow-blue-500/25 ring-1 ring-white/30 transition-transform hover:scale-[1.04]"
+        >
+          View
+          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+        </Link>
+      </div>
+    </motion.article>
   );
 }

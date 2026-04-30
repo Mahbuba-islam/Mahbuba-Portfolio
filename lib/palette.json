@@ -1,9 +1,9 @@
 {
-  "image": "/img/my-picture(mahbuba).jpg",
-  "Vibrant": "#416bae",
-  "LightVibrant": "#7cb1e9",
-  "DarkVibrant": "#162c55",
-  "Muted": "#827e81",
-  "LightMuted": "#b39d90",
-  "DarkMuted": "#423a34"
+  "image": "/img/my%20logo.png",
+  "Vibrant": "#049cf9",
+  "LightVibrant": "#7cccfd",
+  "DarkVibrant": "#071b8d",
+  "Muted": "#025e97",
+  "LightMuted": "#025e97",
+  "DarkMuted": "#071c92"
 }

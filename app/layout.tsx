@@ -1,19 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Sora, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
 import { CommandPalette } from "./components/command-palette";
+import { ScrollToTop } from "./components/scroll-to-top";
+import { SmoothScroll } from "./components/smooth-scroll";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const sora = Sora({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const SITE_URL = "https://mahbuba.dev";
@@ -93,7 +104,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${sora.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="relative min-h-full bg-background text-foreground">
         <script
@@ -112,6 +123,8 @@ export default function RootLayout({
             <Footer />
           </div>
           <CommandPalette />
+          <ScrollToTop />
+          <SmoothScroll />
         </ThemeProvider>
       </body>
     </html>
