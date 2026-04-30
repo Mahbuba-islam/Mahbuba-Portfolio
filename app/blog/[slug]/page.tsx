@@ -81,8 +81,8 @@ export default async function BlogPostPage({
   };
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-24 xl:grid-cols-[minmax(0,1fr)_220px]">
-      <article className="mx-auto w-full max-w-3xl xl:mx-0">
+    <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 xl:grid-cols-[minmax(0,1fr)_220px] xl:gap-12">
+      <article className="mx-auto w-full min-w-0 max-w-3xl xl:mx-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -100,10 +100,10 @@ export default async function BlogPostPage({
             <span aria-hidden>·</span>
             <span>{post.readingTime}</span>
           </div>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-3 text-lg text-muted-foreground">{post.description}</p>
+          <p className="mt-3 text-base text-muted-foreground sm:text-lg">{post.description}</p>
           {post.tags.length > 0 && (
             <ul className="mt-5 flex flex-wrap gap-1.5">
               {post.tags.map((t) => (
@@ -122,12 +122,12 @@ export default async function BlogPostPage({
         </header>
 
         {post.format === "mdx" ? (
-          <div className="prose prose-zinc dark:prose-invert mt-10 max-w-none prose-headings:scroll-mt-24 prose-pre:rounded-xl prose-pre:border prose-pre:border-border/60 prose-pre:bg-zinc-950/80 prose-code:before:hidden prose-code:after:hidden">
+          <div className="prose prose-sm sm:prose-base prose-zinc dark:prose-invert mt-10 max-w-none break-words prose-headings:scroll-mt-24 prose-pre:overflow-x-auto prose-pre:rounded-xl prose-pre:border prose-pre:border-border/60 prose-pre:bg-zinc-950/80 prose-img:rounded-xl prose-code:break-words prose-code:before:hidden prose-code:after:hidden">
             <MdxRenderer source={post.content} />
           </div>
         ) : (
           <div
-            className="prose prose-zinc dark:prose-invert mt-10 max-w-none prose-headings:scroll-mt-24 prose-pre:rounded-xl prose-pre:border prose-pre:border-border/60 prose-pre:bg-zinc-950/80 prose-code:before:hidden prose-code:after:hidden"
+            className="prose prose-sm sm:prose-base prose-zinc dark:prose-invert mt-10 max-w-none break-words prose-headings:scroll-mt-24 prose-pre:overflow-x-auto prose-pre:rounded-xl prose-pre:border prose-pre:border-border/60 prose-pre:bg-zinc-950/80 prose-img:rounded-xl prose-code:break-words prose-code:before:hidden prose-code:after:hidden"
             dangerouslySetInnerHTML={{ __html: html ?? "" }}
           />
         )}

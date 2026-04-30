@@ -237,17 +237,72 @@ function PortraitBlob({ src }: { src: string }) {
         />
       </svg>
 
-      {/* ── Portrait card: original rounded rectangle with gradient frame ── */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center">
-        <div className="relative overflow-hidden rounded-[2rem] p-[2px] shadow-2xl shadow-blue-500/20">
+      {/* ── Portrait card: glassy frame so background shapes/animations show through ── */}
+      <div className="relative z-10 flex h-full w-full items-center justify-center [perspective:1200px]">
+        <motion.div
+          initial={{ opacity: 0, y: 20, rotateX: -6 }}
+          animate={{ opacity: 1, y: [0, -10, 0], rotateX: [0, 2, 0], rotateY: [0, -2, 0] }}
+          transition={{
+            opacity: { duration: 0.8, ease: "easeOut" },
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+            rotateX: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+            rotateY: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+          }}
+          whileHover={{ scale: 1.03, rotateY: 4, rotateX: -3 }}
+          className="relative overflow-hidden rounded-[2rem] p-[2px] shadow-2xl shadow-blue-500/15 [transform-style:preserve-3d]"
+        >
+          {/* Rotating conic gradient halo behind the card */}
           <span
             aria-hidden
-            className="absolute inset-0 rounded-[2rem] opacity-90"
+            className="pointer-events-none absolute -inset-6 rounded-[2.5rem] opacity-50 blur-2xl"
             style={{
               background:
-                "linear-gradient(135deg, var(--brand-purple), var(--brand-blue) 50%, var(--brand-cyan))",
+                "conic-gradient(from 0deg, var(--brand-purple), var(--brand-blue), var(--brand-cyan), var(--brand-aqua), var(--brand-purple))",
+              animation: "halo-spin 14s linear infinite",
             }}
           />
+          {/* Animated gradient border (kept subtle for transparency) */}
+          <span
+            aria-hidden
+            className="absolute inset-0 rounded-[2rem] opacity-50"
+            style={{
+              background:
+                "conic-gradient(from 0deg, var(--brand-purple), var(--brand-blue), var(--brand-cyan), var(--brand-purple))",
+              animation: "halo-spin 10s linear infinite",
+            }}
+          />
+          {/* Glass backdrop layer — frosted blur + very translucent tint */}
+          <span
+            aria-hidden
+            className="absolute inset-[2px] rounded-[1.85rem] backdrop-blur-2xl"
+            style={{
+              background:
+                "linear-gradient(135deg, color-mix(in oklab, var(--brand-purple) 8%, transparent), color-mix(in oklab, var(--brand-cyan) 6%, transparent))",
+              boxShadow:
+                "inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(255,255,255,0.05)",
+            }}
+          />
+          {/* Subtle inner highlight ring with breathing effect */}
+          <motion.span
+            aria-hidden
+            animate={{ opacity: [0.15, 0.45, 0.15] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="pointer-events-none absolute inset-[2px] rounded-[1.85rem] ring-1 ring-white/30"
+          />
+          {/* Diagonal shimmer sweep across the portrait */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-[2px] overflow-hidden rounded-[1.85rem]"
+          >
+            <span
+              className="absolute -inset-y-4 -left-1/2 w-1/2 rotate-12"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)",
+                animation: "shimmer-sweep 5s ease-in-out infinite",
+              }}
+            />
+          </span>
           <Image
             src={src}
             alt="Mahbuba Akter"
@@ -256,7 +311,32 @@ function PortraitBlob({ src }: { src: string }) {
             priority
             className="relative h-72 w-56 rounded-[1.85rem] object-cover sm:h-80 sm:w-64 md:h-[26rem] md:w-72 lg:h-[28rem] lg:w-80"
           />
-        </div>
+          {/* Floating sparkle particles around the card */}
+          {[
+            { top: "8%", left: "-6%", delay: "0s", size: 6 },
+            { top: "30%", right: "-7%", delay: "1.4s", size: 8 },
+            { bottom: "14%", left: "-5%", delay: "2.6s", size: 5 },
+            { bottom: "8%", right: "-4%", delay: "3.6s", size: 7 },
+          ].map((p, i) => (
+            <span
+              key={i}
+              aria-hidden
+              className="absolute rounded-full"
+              style={{
+                top: p.top,
+                left: p.left,
+                right: p.right,
+                bottom: p.bottom,
+                width: p.size,
+                height: p.size,
+                background:
+                  "radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0) 65%)",
+                boxShadow: "0 0 12px rgba(120,180,255,0.7)",
+                animation: `float-y 5s ease-in-out ${p.delay} infinite`,
+              }}
+            />
+          ))}
+        </motion.div>
       </div>
     </div>
   );

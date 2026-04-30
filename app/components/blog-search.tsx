@@ -128,15 +128,15 @@ export function BlogSearch({
           <li key={post.slug}>
             <Link
               href={`/blog/${post.slug}`}
-              className="group flex flex-col justify-between gap-4 rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-indigo-400/40 hover:shadow-xl hover:shadow-indigo-500/5 sm:flex-row sm:items-center"
+              className="group flex flex-col justify-between gap-4 rounded-2xl border border-border/60 bg-card/60 p-4 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-indigo-400/40 hover:shadow-xl hover:shadow-indigo-500/5 sm:flex-row sm:items-center sm:p-5"
             >
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                   <span aria-hidden>·</span>
                   <span>{post.readingTime}</span>
                 </div>
-                <h2 className="mt-1 truncate text-lg font-semibold tracking-tight group-hover:text-indigo-300">
+                <h2 className="mt-1 text-base font-semibold tracking-tight group-hover:text-indigo-300 sm:truncate sm:text-lg">
                   {post.title}
                 </h2>
                 <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">

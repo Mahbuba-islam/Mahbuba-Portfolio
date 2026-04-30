@@ -158,7 +158,7 @@ export function Skills() {
                 ))}
               </ul>
 
-              <div className="mt-auto flex items-center justify-between gap-2 border-t border-white/20 pt-5 text-xs text-muted-foreground dark:border-white/10">
+              <div className="mt-8 flex items-center justify-between gap-2 border-t border-white/20 pt-5 text-xs text-muted-foreground dark:border-white/10">
                 <span className="inline-flex items-center gap-1.5">
                   <Sparkles className="h-3 w-3" />
                   {g.items.length} technologies

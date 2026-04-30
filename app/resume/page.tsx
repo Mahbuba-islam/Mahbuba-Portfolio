@@ -146,7 +146,7 @@ const EDUCATION = [
   },
   {
     school: "Programming Hero — Full Stack Bootcamp",
-    detail: "Level‑2 Web Development & Level‑2 Next‑Level Web Development.",
+    detail: "Level‑1 Web Development & Level‑2 Next‑Level Web Development.",
     period: "Completed",
   },
 ];

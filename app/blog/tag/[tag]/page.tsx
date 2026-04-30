@@ -48,7 +48,7 @@ export default async function TagPage({
   const posts = getPostsByTag(original);
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-20 sm:px-6 sm:py-28">
+    <section className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
       <Link
         href="/blog"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -60,7 +60,7 @@ export default async function TagPage({
         <p className="text-xs font-medium uppercase tracking-widest text-indigo-400">
           Tag
         </p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="mt-3 break-words text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
           #{original}
         </h1>
         <p className="mt-4 text-muted-foreground">
@@ -74,15 +74,15 @@ export default async function TagPage({
           <li key={post.slug}>
             <Link
               href={`/blog/${post.slug}`}
-              className="group flex flex-col justify-between gap-4 rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-indigo-400/40 hover:shadow-xl hover:shadow-indigo-500/5 sm:flex-row sm:items-center"
+              className="group flex flex-col justify-between gap-4 rounded-2xl border border-border/60 bg-card/60 p-4 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-indigo-400/40 hover:shadow-xl hover:shadow-indigo-500/5 sm:flex-row sm:items-center sm:p-5"
             >
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                   <span aria-hidden>·</span>
                   <span>{post.readingTime}</span>
                 </div>
-                <h2 className="mt-1 truncate text-lg font-semibold tracking-tight group-hover:text-indigo-300">
+                <h2 className="mt-1 text-base font-semibold tracking-tight group-hover:text-indigo-300 sm:truncate sm:text-lg">
                   {post.title}
                 </h2>
                 <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">

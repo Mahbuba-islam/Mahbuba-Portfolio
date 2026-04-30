@@ -14,12 +14,12 @@ export default function BlogIndexPage() {
   const tags = getAllTags();
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-20 sm:px-6 sm:py-28">
+    <section className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
       <div className="max-w-2xl">
         <p className="text-xs font-medium uppercase tracking-widest text-indigo-400">
           Blog
         </p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
           Writing about the things I&apos;m building.
         </h1>
         <p className="mt-4 text-muted-foreground text-sm">

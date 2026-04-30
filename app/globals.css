@@ -143,71 +143,15 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-feature-settings: "ss01", "cv11", "cv02", "cv04";
-    font-optical-sizing: auto;
-    font-size: 16px;
-    line-height: 1.65;
-    letter-spacing: -0.005em;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
   html {
     @apply font-sans;
     scroll-behavior: smooth;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display), var(--font-sans), ui-sans-serif, system-ui,
-      sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.08;
-    text-wrap: balance;
-  }
-  h1 {
-    font-weight: 800;
-    letter-spacing: -0.035em;
-  }
-  h2 {
-    letter-spacing: -0.028em;
-  }
-  h3 {
-    letter-spacing: -0.022em;
-    line-height: 1.18;
-  }
-  p {
-    text-wrap: pretty;
-  }
   ::selection {
     background: color-mix(in oklab, var(--brand-blue) 45%, transparent);
     color: #fff;
   }
-}
-
-/* ── Typography utilities ───────────────────────────────────────────── */
-.font-display {
-  font-family: var(--font-display), var(--font-sans), ui-sans-serif, system-ui,
-    sans-serif;
-  letter-spacing: -0.025em;
-}
-
-/* Waving hand animation (Hello! pill) */
-@keyframes wave-hand {
-  0%   { transform: rotate(0deg); }
-  10%  { transform: rotate(14deg); }
-  20%  { transform: rotate(-8deg); }
-  30%  { transform: rotate(14deg); }
-  40%  { transform: rotate(-4deg); }
-  50%  { transform: rotate(10deg); }
-  60%  { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
-}
-.animate-wave {
-  display: inline-block;
-  transform-origin: 70% 70%;
-  animation: wave-hand 2.4s ease-in-out infinite;
 }
 
 /* ── Brand gradient utilities ───────────────────────────────────────── */
@@ -267,28 +211,6 @@
 @keyframes halo-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .icon-halo::after { animation: none; } }
 
-/* ── Reduced glow in dark mode ─────────────────────────────────────── */
-.dark .icon-halo {
-  box-shadow:
-    0 4px 14px -8px color-mix(in oklab, var(--brand-blue) 40%, transparent),
-    inset 0 1px 0 rgba(255,255,255,0.25),
-    inset 0 -8px 16px -10px rgba(0,0,0,0.25);
-}
-.dark .icon-halo::after {
-  opacity: 0.18;
-  filter: blur(8px);
-}
-/* Dim large blurred ambient washes on dark backgrounds */
-.dark [class*="blur-3xl"] { opacity: 0.55 !important; }
-.dark [class*="blur-2xl"] { opacity: 0.5 !important; }
-/* Dampen big colored shadows */
-.dark .shadow-blue-500\/30,
-.dark .shadow-blue-500\/25,
-.dark .shadow-blue-500\/20,
-.dark .shadow-blue-500\/15 {
-  --tw-shadow-color: color-mix(in oklab, var(--brand-blue) 22%, transparent);
-}
-
 /* ── Floating geometric shapes (hero background) ────────────────────── */
 @keyframes float-y {
   0%, 100% { transform: translateY(0) rotate(0); }
@@ -313,6 +235,23 @@
 .animate-float-x      { animation: float-x 11s ease-in-out infinite; }
 .animate-drift        { animation: drift 14s ease-in-out infinite; }
 .animate-blob-morph   { animation: blob-morph 16s ease-in-out infinite; }
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(0%) rotate(12deg); opacity: 0; }
+  20%  { opacity: 0.8; }
+  60%  { opacity: 0.8; }
+  100% { transform: translateX(420%) rotate(12deg); opacity: 0; }
+}
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30%      { transform: rotate(18deg); }
+  20%, 40%      { transform: rotate(-12deg); }
+  50%           { transform: rotate(8deg); }
+}
+.animate-wave {
+  display: inline-block;
+  transform-origin: 70% 80%;
+  animation: wave 2.4s ease-in-out infinite;
+}
 @media (prefers-reduced-motion: reduce) {
   .animate-float-y, .animate-float-x, .animate-drift, .animate-blob-morph { animation: none; }
 }
