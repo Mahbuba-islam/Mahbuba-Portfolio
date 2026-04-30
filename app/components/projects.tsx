@@ -380,6 +380,28 @@ export const PROJECTS: Project[] = [
   badge: { label: "Weather App", icon: CloudSun },
 },
 {
+  title: "Influencer Gear",
+  tagline: "UI design practice with modern product layout",
+
+  description:
+    "A frontend UI practice project focused on building a clean and modern product landing page design. The goal was to improve CSS skills, layout structuring, and responsive design using JavaScript and Tailwind CSS. This project does not include real product logic or API functionality, only UI implementation practice.",
+
+  features: [
+    "Modern product UI layout design",
+    "Responsive design for all devices",
+    "Clean and structured component layout",
+    "CSS styling practice with Tailwind",
+    "Focus on UI/UX improvement"
+  ],
+
+  stack: ["HTML", "CSS", "JavaScript", "Tailwind CSS"],
+
+  github: "https://github.com/Mahbuba-islam/Influencer-Gear.git",
+  demo: "https://influencer-products-css.vercel.app",
+  icon: Sparkle,
+  badge: { label: "UI Practice", icon: Sparkle },
+},
+{
   title: "Matte Lipstick",
   tagline: "UI design practice with modern product layout",
 
