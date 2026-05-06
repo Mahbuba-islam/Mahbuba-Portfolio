@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
     title: "Consultdge",
     tagline: "Chat, notifications, live sessions, AI",
     description:
-      "It’s a full-stack consultation platform where users can connect with experts, book sessions, communicate in real time, and complete the entire consultation workflow — including chat, video calls, AI features, and payments — inside a single system.",
+      "All-in-one consultation platform: chat, video, AI, and payments in a seamless workflow.",
     features: [
       "Real-time chat (Socket.io)",
       "Live notifications",
@@ -72,7 +72,7 @@ export const PROJECTS: Project[] = [
   tagline: "Role-based learning and mentorship platform",
 
   description:
-    "A full-stack mentorship and learning platform built with Next.js, Node.js, Express, Prisma, and BetterAuth. It connects students and teachers in a structured environment where teachers can publish content, manage learning resources, and guide students, while admins oversee the entire system with full control over users, roles, and platform activity.",
+    "Mentorship platform with role-based access, content management, and secure learning flow.",
 
   features: [
     "Role-based system (Student, Teacher, Admin)",
@@ -95,7 +95,7 @@ export const PROJECTS: Project[] = [
   tagline: "Inventory and stock management system",
 
   description:
-    "A full-stack warehouse management system built using the MERN stack. It allows users to manage inventory, track stock levels, and handle product operations efficiently. The application includes authentication, protected routes, and CRUD functionality for managing warehouse data, designed to simulate real-world inventory workflows.",
+    "Inventory management app for real-time stock, secure access, and efficient warehouse ops.",
 
   features: [
     "Add, update, and delete inventory items",
@@ -118,7 +118,7 @@ export const PROJECTS: Project[] = [
   tagline: "Modern news portal with categorized content browsing",
 
   description:
-    "A React-based news web application that fetches and displays real-time news articles from an external API. Users can browse news by categories, view detailed articles, and navigate through a clean, responsive interface. Built as a practice project to strengthen React fundamentals, API integration, and dynamic routing.",
+    "Modern news portal: browse, filter, and read live articles in a clean UI.",
 
   features: [
     "Category-based news browsing",
@@ -141,7 +141,7 @@ export const PROJECTS: Project[] = [
   tagline: "Full-stack manufacturer website with product showcase system",
 
   description:
-    "A full-stack manufacturer website built using the MERN stack where users can explore products, view product details, and interact with a structured business platform. It includes authentication, protected routes, and role-based functionality for managing products and orders. Built to practice real-world full-stack architecture, API integration, and CRUD operations.",
+    "Manufacturer site with product showcase, secure access, and role-based management.",
 
   features: [
     "Product listing and details system",
@@ -164,7 +164,7 @@ export const PROJECTS: Project[] = [
   tagline: "Doctor–patient appointment and management platform",
 
   description:
-    "A full-stack healthcare platform where patients can browse doctors and book appointments, while doctors can manage schedules and patient requests. Admin has full control over users, roles, and platform activity. Built with a focus on real-world healthcare workflows and role-based access control using React.",
+    "Healthcare platform for booking, doctor management, and admin control.",
 
   features: [
     "Role-based system (Admin, Doctor, Patient)",
@@ -187,7 +187,7 @@ export const PROJECTS: Project[] = [
   tagline: "Personal book tracker with wishlist and read list",
 
   description:
-    "A React-based book tracking application where users can explore books, add them to a wishlist, and mark them as read. It provides a simple and interactive way to manage reading habits with separate wishlist and read list pages. Built using React, React Router, JavaScript, and Tailwind CSS to strengthen frontend development skills and state management concepts.",
+    "Book tracker: wishlist, read list, and interactive reading management.",
 
   features: [
     "Add books to wishlist",
@@ -210,7 +210,7 @@ export const PROJECTS: Project[] = [
   tagline: "Interactive pet adoption and browsing platform",
 
   description:
-    "A frontend web application built with HTML, CSS, JavaScript, and Tailwind CSS where users can browse pets, view detailed information, and adopt or like pets. Liked pets are added to a list with real-time UI updates, and users can also remove them. The project focuses on DOM manipulation, filtering, and interactive user experience.",
+    "Pet adoption platform: browse, like, and adopt pets with real-time updates.",
 
   features: [
     "Browse pets with category-based filtering",
@@ -235,7 +235,7 @@ export const PROJECTS: Project[] = [
   tagline: "Travel booking app with authentication and destination filtering",
 
   description:
-    "A frontend-focused travel application built with vanilla JavaScript where users can explore destinations, filter by categories, and book travel experiences. It includes basic authentication features like login and signup, along with dynamic UI updates for booking interactions. Built to strengthen core JavaScript skills, DOM manipulation, and real-world user flow handling without using frameworks.",
+    "Travel app: explore, filter, and book destinations with simple auth.",
 
   features: [
     "Browse and explore travel destinations",
@@ -257,7 +257,7 @@ export const PROJECTS: Project[] = [
     title: "MealDb Explorer",
     tagline: "Explore meals and recipes",
     description:
-      "A React-based application that allows users to explore meals and recipes from the MealDB API. Users can search for meals, view detailed recipe information, and filter meals by category or area.",
+      "Meal explorer: search, filter, and view recipes from MealDB API.",
     features: [
       "Search for meals",
       "View detailed recipe information",
@@ -274,7 +274,7 @@ export const PROJECTS: Project[] = [
   tagline: "Fantasy cricket team builder with player bidding system",
 
   description:
-    "A React-based fantasy cricket application where users manage a virtual budget (coins) to select players and build their own team. Each player selection deducts coins instantly, simulating a real team auction/buying experience. Users can view their selected squad and manage team composition dynamically. Built with React, JavaScript, and Tailwind CSS to practice state management and interactive UI logic.",
+    "Fantasy cricket: build your team, bid for players, and manage your squad.",
 
   features: [
     "User coin-based player selection system",
@@ -297,7 +297,7 @@ export const PROJECTS: Project[] = [
   tagline: "A React-based knowledge sharing platform with bookmarking and reading system",
 
   description:
-    "A React-based knowledge sharing platform where users can explore blogs, bookmark their favorite posts, and manage reading status. Bookmarked posts update instantly in the UI, and users can mark articles as read or remove them from their saved list. Built with React, JavaScript, and Tailwind CSS to practice state management, dynamic rendering, and interactive UI behavior.",
+    "Knowledge sharing: explore, bookmark, and manage your reading list.",
 
   features: [
     "Create and explore user-generated blog content",
@@ -320,7 +320,7 @@ export const PROJECTS: Project[] = [
   tagline: "Fun love compatibility checker based on names",
 
   description:
-    "A simple JavaScript-based fun application where users can enter their name and their partner’s name to calculate a love compatibility percentage. The result is generated instantly and users can recheck multiple times with different inputs. Built to practice JavaScript logic, DOM manipulation, and interactive UI design.",
+    "Fun app: check love compatibility instantly with a playful UI.",
 
   features: [
     "Calculate love compatibility percentage based on names",
@@ -342,7 +342,7 @@ export const PROJECTS: Project[] = [
     title: "Todo List App",
     tagline: "Manage your tasks efficiently",
     description:
-      "A simple and intuitive todo list application that helps users organize their tasks, set priorities, and track progress. Built with React, JavaScript, and Tailwind CSS for a responsive and interactive user experience.",
+      "Todo app: organize, prioritize, and track your tasks easily.",
     features: [
       "Create, edit, and delete tasks",
       "Set task priorities and deadlines",
@@ -361,7 +361,7 @@ export const PROJECTS: Project[] = [
   tagline: "Real-time weather updates by city",
 
   description:
-    "A simple and interactive weather application where users can search any city or country to view real-time weather information. It fetches live weather data and displays temperature, conditions, and location details in a clean and responsive UI. Built with JavaScript and Tailwind CSS to practice API integration and dynamic UI rendering.",
+    "Weather app: get real-time weather by city in a clean UI.",
 
   features: [
     "Search weather by city or country name",
@@ -384,7 +384,7 @@ export const PROJECTS: Project[] = [
   tagline: "UI design practice with modern product layout",
 
   description:
-    "A frontend UI practice project focused on building a clean and modern product landing page design. The goal was to improve CSS skills, layout structuring, and responsive design using JavaScript and Tailwind CSS. This project does not include real product logic or API functionality, only UI implementation practice.",
+    "Modern product UI: clean, responsive, and stylish landing page design.",
 
   features: [
     "Modern product UI layout design",
@@ -406,7 +406,7 @@ export const PROJECTS: Project[] = [
   tagline: "UI design practice with modern product layout",
 
   description:
-    "A frontend UI practice project focused on building a clean and modern product landing page design. The goal was to improve CSS skills, layout structuring, and responsive design using JavaScript and Tailwind CSS. This project does not include real product logic or API functionality, only UI implementation practice.",
+    "Modern product UI: clean, responsive, and stylish landing page design.",
 
   features: [
     "Modern product UI layout design",
@@ -429,7 +429,7 @@ export const PROJECTS: Project[] = [
   tagline: "Static landing page UI practice",
 
   description:
-    "A static frontend practice project built with raw HTML and CSS. The goal was to improve layout structuring, responsive design, and visual composition by building a modern convention center landing page without using frameworks or JavaScript.",
+    "Static landing page: modern, responsive, and built with pure HTML/CSS.",
 
   features: [
     "Built with pure HTML and CSS",
@@ -601,6 +601,20 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           View
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
         </Link>
+        {/* <Link
+          href={`/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
+          className="inline-flex items-center gap-1.5 rounded-full border border-brand-gradient px-3 py-1.5 text-xs font-semibold text-brand-gradient bg-white/80 hover:bg-brand-gradient hover:text-white transition-colors"
+        >
+          Details
+          <ArrowRight className="h-3.5 w-3.5" />
+        </Link> */}
+        <Link
+  href={`/projects/${project.title?.toLowerCase().replace(/\s+/g, "-")}`}
+  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-black bg-gray-200"
+>
+  Details
+  <ArrowRight className="h-3.5 w-3.5" />
+</Link>
       </div>
     </motion.article>
   );
