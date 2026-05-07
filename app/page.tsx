@@ -13,7 +13,7 @@ export default function Home() {
       <About />
       <Services />
       <Skills />
-      <Projects limit={3} />
+     
       <LatestPosts />
       <Contact />
     </>

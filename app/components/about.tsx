@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Download,
   Mail,
   Phone,
   User,
@@ -16,20 +15,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { GithubIcon, LinkedinIcon } from "./brand-icons";
 
-const PORTRAIT_SRC = "/img/my-new-portfolio-img-about.jpg";
+const PORTRAIT_SRC = "/img/about-img-mahbuba.jpg";
 
 const FACTS = [
   { icon: User, label: "Name", value: "Mahbuba Akter" },
   { icon: MapPin, label: "Location", value: "New York, USA" },
   { icon: Mail, label: "Email", value: "mahbubaislam7010@gmail.com" },
-  { icon: Phone, label: "Available", value: "Internship & FT roles" },
+  { icon: Phone, label: "Status", value: "Internships / Full-time" },
 ];
 
-const SOCIALS: Array<{
-  Icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  href: string;
-}> = [
+const SOCIALS = [
   { Icon: GithubIcon, label: "GitHub", href: "https://github.com/" },
   { Icon: LinkedinIcon, label: "LinkedIn", href: "https://linkedin.com/" },
   { Icon: MessageCircle, label: "Chat", href: "https://twitter.com/" },
@@ -38,128 +33,159 @@ const SOCIALS: Array<{
 
 export function About() {
   return (
-    <section id="about" className="relative scroll-mt-5  sm:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section
+      id="about"
+      className="relative scroll-mt-24 lg:px-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-14 lg:py-15"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[420px_minmax(0,1fr)] items-start gap-10 lg:gap-16">
 
-        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
-
-          {/* LEFT IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-15%" }}
-            transition={{ duration: 0.6 }}
-            className="relative mx-auto w-full max-w-md"
-          >
-            <div aria-hidden className="absolute inset-0 -z-10">
-              <div className="absolute -left-10 top-10 h-40 w-40 rounded-full blur-3xl opacity-60 bg-blue-500/25" />
-              <div className="absolute -right-10 bottom-10 h-40 w-40 rounded-full blur-3xl opacity-60 bg-cyan-400/25" />
+        {/* LEFT COLUMN — IMAGE + SOCIALS + FACTS */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center max-w-[420px] w-full lg:items-center md:items-start gap-4 md:gap-8 lg:gap-5"
+        >
+          {/* IMAGE */}
+          <div className="relative w-full max-w-sm mx-auto">
+            <div className="absolute inset-0 -z-10">
+              <div className="absolute -left-8 top-8 h-32 w-32 rounded-full blur-3xl bg-blue-500/20" />
+              <div className="absolute -right-8 bottom-8 h-32 w-32 rounded-full blur-3xl bg-cyan-400/20" />
             </div>
 
-            <div className="relative overflow-hidden rounded-[2rem] p-[2px] shadow-xl shadow-blue-500/10">
+            <div className="relative overflow-hidden rounded-[1.8rem] p-[2px] shadow-lg">
               <span
-                aria-hidden
-                className="absolute inset-0 rounded-[2rem]"
+                className="absolute inset-0 rounded-[1.8rem]"
                 style={{
                   background:
                     "linear-gradient(135deg, #2563eb, #0ea5e9, #22d3ee)",
                 }}
               />
 
-              <div className="relative h-[400px] sm:h-[440px] w-full overflow-hidden rounded-[1.85rem]">
+              <div className="relative rounded-[1.6rem] overflow-hidden bg-background">
                 <Image
                   src={PORTRAIT_SRC}
                   alt="Mahbuba Akter"
-                  fill
-                  className="object-cover"
+                  width={500}
+                  height={200}
+                  className="w-full h-auto  md:h-[300px] lg:h-[165px] object-cover rounded-[1.6rem]"
                   priority
                 />
               </div>
             </div>
+          </div>
 
-            {/* SOCIALS */}
-            <div className="mt-6 flex justify-center gap-3">
-              {SOCIALS.map((s) => (
-                <Link
-                  key={s.label}
-                  href={s.href}
-                  target={s.href.startsWith("http") ? "_blank" : undefined}
-                  rel={s.href.startsWith("http") ? "noreferrer" : undefined}
-                  aria-label={s.label}
-                  className="group relative grid h-11 w-11 place-items-center rounded-full ring-1 ring-white/20 shadow-md transition hover:-translate-y-0.5 hover:scale-105"
-                >
-                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 opacity-90" />
-                  <span className="absolute inset-[2px] rounded-full bg-background" />
-                  <s.Icon className="relative h-4 w-4 text-foreground group-hover:text-blue-500" />
-                </Link>
-              ))}
-            </div>
-          </motion.div>
+         
+          {/* FACTS MOVED UNDER IMAGE (BALANCES HEIGHT) */}
+       <dl className="
+  grid grid-cols-2 
+  gap-x-8 gap-y-4
+  w-full max-w-sm 
+  rounded-xl border border-white/10 bg-white/60 p-4 
+  backdrop-blur dark:bg-white/5
+">
+  {FACTS.map((f) => (
+    <div key={f.label} className="flex items-start gap-4">
+      
+      {/* SMALLER ICON */}
+      <span className="
+        grid h-6 w-6 place-items-center 
+        rounded-full 
+        bg-gradient-to-r from-blue-500 to-cyan-400 
+        text-white
+      ">
+        <f.icon className="h-3 w-3" />
+      </span>
 
-          {/* RIGHT CONTENT */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-15%" }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-          >
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/60 px-4 py-1.5 text-sm font-semibold backdrop-blur-md dark:bg-white/10">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">
-                About Me
-              </span>
-            </span>
+      {/* SMALLER TEXT */}
+      <div className="min-w-0">
+        <dt className="md:text-[9px] text-[5px]  uppercase tracking-widest text-muted-foreground">
+          {f.label}
+        </dt>
+        <dd className="md:text-[7px] text-[5px] font-medium">
+          {f.value}
+        </dd>
+      </div>
 
-            <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-3xl">
-              Full Stack Developer
-            </h2>
+    </div>
+  ))}
+</dl>
 
-            {/* ✅ UPDATED TEXT */}
-            <p className="mt-5  leading-relaxed text-muted-foreground text-xs">
-              I’m a Junior Full Stack Developer who enjoys turning ideas into real applications. I focus on building intuitive and user-centered web applications that deliver real value.
-              <br /><br />
-              I’ve completed Programming Hero’s Level 1 & 2 bootcamps and learned through hands-on practice. I work with both frontend and backend, building APIs, managing data, and creating responsive interfaces while continuously improving my skills.
-            </p>
-
-            {/* INFO */}
-            <dl className="mt-7 grid gap-4 rounded-2xl border border-white/15 bg-white/60 p-5 backdrop-blur-xl sm:grid-cols-2 dark:bg-white/5">
-              {FACTS.map((f) => (
-                <div key={f.label} className="flex items-start gap-3">
-                  <span className="h-8 w-8 shrink-0 grid place-items-center rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white">
-                    <f.icon className="h-3.5 w-3.5" />
-                  </span>
-
-                  <div>
-                    <dt className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                      {f.label}
-                    </dt>
-                    <dd className="text-xs font-medium text-foreground">
-                      {f.value}
-                    </dd>
-                  </div>
-                </div>
-              ))}
-            </dl>
-
-            {/* CTA */}
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white"
+           {/* SOCIAL ICONS */}
+          <div className="flex justify-center items-center md:justify-start gap-3 text-center mx-auto">
+            {SOCIALS.map((s) => (
+              <Link
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                className="relative grid h-7 w-7 place-items-center rounded-full transition hover:scale-105"
               >
-                <Link href="#contact">
-                  Contact me <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
+                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" />
+                <span className="absolute inset-[2px] rounded-full bg-background" />
+                <s.Icon className="relative h-3 w-3" />
+              </Link>
+            ))}
+          </div>
 
-              <Button asChild variant="outline" size="lg" className="rounded-full">
-                <Link href="/resume">
-                  <Download className="h-4 w-4" /> Download resume
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
+        </motion.div>
+
+        {/* RIGHT COLUMN — ABOUT TEXT + CTA */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl lg:pl-0"
+        >
+          <span className="inline-flex items-center rounded-full border border-white/20 bg-white/60 px-3 py-1 text-xs font-semibold backdrop-blur dark:bg-white/10">
+            About Me
+          </span>
+
+          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
+            Full Stack Developer.
+          </h2>
+
+          <p className="mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+         I’m a Full Stack Developer experienced in building modern web applications using Next.js, Node.js, and databases.
+I focus on creating scalable, high-performance, and user-centric products with a strong emphasis on user experience, clean architecture, and real-world usability.
+
+          </p>
+
+          <p className="mt-3 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+            {/* I enjoy transforming ideas into clean, production-ready systems with thoughtful UI and robust backend architecture.
+            I focus on performance, structure, and real-world usability. */}
+          I prioritize system design to craft scalable, maintainable, and production-ready applications that perform reliably at production scale.
+I enjoy working across both frontend and backend to turn complex ideas into simple, intuitive user experiences.
+I care about writing clean, maintainable code that can grow with real-world demands.
+I always try to explore new technologies to stay updated and improve my development approach.
+          </p>
+
+          {/* CTA BUTTONS */}
+          <div className="mt-6 flex items-center gap-3 flex-wrap">
+            <Button
+              asChild
+              size="sm"
+              variant="outline"
+              className="rounded-full"
+            >
+              <Link href="#contact" className="flex items-center gap-2">
+                Contact <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+
+            <Button
+              asChild
+              size="sm"
+              className="rounded-full bg-brand-gradient text-white shadow-md shadow-blue-500/25"
+            >
+              <Link href="#projects" className="flex items-center gap-2">
+                View Projects <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

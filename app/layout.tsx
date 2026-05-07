@@ -36,39 +36,7 @@ export const metadata: Metadata = {
     template: "%s · Mahbuba Akter",
   },
   description:
-    "Portfolio of Mahbuba Akter — Junior Full Stack Web Developer based in New York. Building modern, scalable, real-time web applications.",
-  keywords: [
-    "Mahbuba Akter",
-    "Full Stack Developer",
-    "Next.js",
-    "React",
-    "Node.js",
-    "Internship",
-    "New York",
-  ],
-  authors: [{ name: "Mahbuba Akter" }],
-  creator: "Mahbuba Akter",
-  openGraph: {
-    type: "website",
-    title: "Mahbuba Akter — Junior Full Stack Web Developer",
-    description:
-      "Building modern, scalable, real-time web applications with Next.js, Node.js, and Prisma.",
-    url: SITE_URL,
-    siteName: "Mahbuba Akter",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Mahbuba Akter — Junior Full Stack Web Developer",
-    description:
-      "Building modern, scalable, real-time web applications with Next.js, Node.js, and Prisma.",
-  },
-  icons: { icon: "/favicon.ico" },
-  alternates: {
-    canonical: "/",
-    types: {
-      "application/rss+xml": [{ url: "/rss.xml", title: "Mahbuba Akter — Blog" }],
-    },
-  },
+    "Portfolio of Mahbuba Akter — Junior Full Stack Web Developer based in New York.",
 };
 
 const personJsonLd = {
@@ -77,29 +45,13 @@ const personJsonLd = {
   name: "Mahbuba Akter",
   url: SITE_URL,
   jobTitle: "Junior Full Stack Web Developer",
-  email: "mailto:mahbubaislam7010@gmail.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "New York",
-    addressRegion: "NY",
-    addressCountry: "US",
-  },
-  knowsAbout: [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Node.js",
-    "Prisma",
-    "PostgreSQL",
-    "Socket.io",
-  ],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
@@ -109,8 +61,11 @@ export default function RootLayout({
       <body className="relative min-h-full bg-background text-foreground">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd),
+          }}
         />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -118,10 +73,17 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="relative flex min-h-dvh flex-col">
+            
             <Navbar />
-            <main className="flex-1">{children}</main>
+
+            {/* ✅ FIXED: NO CONTAINER WRAPPER (IMPORTANT FOR ROUTING) */}
+            <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {children}
+            </main>
+
             <Footer />
           </div>
+
           <CommandPalette />
           <ScrollToTop />
           <SmoothScroll />
@@ -130,4 +92,3 @@ export default function RootLayout({
     </html>
   );
 }
-

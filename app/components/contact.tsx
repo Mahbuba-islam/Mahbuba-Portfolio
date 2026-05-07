@@ -73,7 +73,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 py-12 sm:py-16">
+    <section id="contact" className="scroll-mt-24 py-5">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 md:grid-cols-2">
           <motion.div
@@ -86,7 +86,7 @@ export function Contact() {
               Contact
             </p>
 
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-3xl">
               Let&apos;s build{" "}
               <span className="bg-linear-to-r from-indigo-500 via-sky-500 to-cyan-500 bg-clip-text text-transparent dark:from-indigo-300 dark:via-sky-300 dark:to-cyan-300">
                 something together.
@@ -95,53 +95,64 @@ export function Contact() {
 
           
 
-            <ul className="mt-8 space-y-3 text-sm">
-              <li>
-                <Link
-                  href="mailto:mahbubaislam7010@gmail.com"
-                  className="group inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-xl backdrop-saturate-150 transition-colors hover:border-indigo-300/60 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10"
-                >
-                  <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-md shadow-indigo-500/30 ring-1 ring-white/30">
-                    <Mail className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="text-foreground/90 group-hover:text-foreground">
-                    mahbubaislam7010@gmail.com
-                  </span>
-                </Link>
-              </li>
+         <ul className="mt-8 space-y-3 text-sm">
 
-              <li>
-                <Link
-                  href="https://github.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-xl backdrop-saturate-150 transition-colors hover:border-indigo-300/60 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10"
-                >
-                  <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-slate-300 via-slate-100 to-white text-slate-900 shadow-md shadow-black/20 ring-1 ring-white/30">
-                    <GithubIcon className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="text-foreground/90 group-hover:text-foreground">
-                    GitHub
-                  </span>
-                </Link>
-              </li>
+  {/* EMAIL */}
+  <li>
+    <Link
+      href="mailto:mahbubaislam7010@gmail.com"
+      className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+    >
+      <span className="grid h-7 w-7 place-items-center rounded-md bg-gradient-to-br from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-md ring-1 ring-white/30">
+        <Mail className="h-3.5 w-3.5" />
+      </span>
 
-              <li>
-                <Link
-                  href="https://linkedin.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-xl backdrop-saturate-150 transition-colors hover:border-indigo-300/60 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10"
-                >
-                  <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-sky-400 via-blue-500 to-indigo-500 text-white shadow-md shadow-sky-500/30 ring-1 ring-white/30">
-                    <LinkedinIcon className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="text-foreground/90 group-hover:text-foreground">
-                    LinkedIn
-                  </span>
-                </Link>
-              </li>
-            </ul>
+      <span className="text-foreground/90 group-hover:text-foreground truncate">
+        mahbubaislam7010@gmail.com
+      </span>
+    </Link>
+  </li>
+
+  {/* GITHUB + LINKEDIN ROW */}
+  <div className="grid grid-cols-2 gap-3">
+
+    {/* GITHUB */}
+    <li>
+      <Link
+        href="https://github.com/"
+        target="_blank"
+        className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+      >
+        <span className="grid h-7 w-7 place-items-center rounded-md bg-gradient-to-br from-slate-200 via-slate-100 to-white text-slate-900 shadow-md ring-1 ring-white/30 dark:from-slate-700 dark:via-slate-600 dark:to-slate-500 dark:text-white">
+          <GithubIcon className="h-3.5 w-3.5" />
+        </span>
+
+        <span className="text-foreground/90 group-hover:text-foreground">
+          GitHub
+        </span>
+      </Link>
+    </li>
+
+    {/* LINKEDIN */}
+    <li>
+      <Link
+        href="https://linkedin.com/"
+        target="_blank"
+        className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+      >
+        <span className="grid h-7 w-7 place-items-center rounded-md bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-500 text-white shadow-md ring-1 ring-white/30">
+          <LinkedinIcon className="h-3.5 w-3.5" />
+        </span>
+
+        <span className="text-foreground/90 group-hover:text-foreground">
+          LinkedIn
+        </span>
+      </Link>
+    </li>
+
+  </div>
+
+</ul>
           </motion.div>
 
           <motion.form

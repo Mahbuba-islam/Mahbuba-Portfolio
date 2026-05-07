@@ -284,7 +284,7 @@ export default function ResumePage() {
             {PROJECTS.map((p) => (
               <li key={p.title} className="break-inside-avoid">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="text-sm font-semibold text-foreground print:text-black">
+                  <h3 className="text-sm font-semibold text-foreground print:text-black ">
                     {p.title}
                   </h3>
                   <span className="text-xs text-muted-foreground print:text-black/70">
